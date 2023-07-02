@@ -1,9 +1,9 @@
-import Info from './view/Info';
+import Date from './Date';
+import Info from './Info';
 import { View } from 'react-native';
-import Divider from '../../UI/Divider';
+import Divider from '../../../UI/Divider';
 import React, { ReactElement } from 'react';
-import AdditionalInfo from './view/AdditionalInfo';
-import Date from './view/Date';
+import AdditionalInfo from './AdditionalInfo';
 
 export default function ForecastInfo(): ReactElement {
     return (

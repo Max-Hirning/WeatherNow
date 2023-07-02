@@ -6,10 +6,10 @@ export default function App(): ReactElement {
   return (
     <>
       <Forecast/>
-        <StatusBar
-          animated={true}
-          backgroundColor="rgb(30 41 59)"
-        />
+      <StatusBar
+        animated={true}
+        backgroundColor="rgb(30 41 59)"
+      />
     </>
   );
 }
