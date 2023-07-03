@@ -13,6 +13,7 @@ export default function ForecastSlider(): ReactElement {
                     <SliderEl/>
                 );
             }}
+            keyExtractor={(_: any, index: number): string => index.toString()}
         />
     );
 }
