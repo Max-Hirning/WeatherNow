@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 
 export default function Info(): ReactElement {
     return (
-        <View className="flex-col">
+        <View className=" flex-col">
             <View className="flex-row items-center justify-between">
                 <Image source={require("../../../assets/icons/CloudySunny.png")}/>
                 <View>

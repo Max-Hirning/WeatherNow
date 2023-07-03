@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 export default function ForecastTableEl(): ReactElement {
     return (
-        <TouchableOpacity className="flex-row items-center justify-between">
+        <TouchableOpacity className=" flex-row items-center justify-between">
             <Text className="text-white font-bold text-lg">Today</Text>
             <Image 
                 className="w-14 h-14 mr-4"

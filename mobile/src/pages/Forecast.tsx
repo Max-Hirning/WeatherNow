@@ -1,17 +1,17 @@
 import React, { ReactElement } from 'react';
 import { ScrollView, View } from 'react-native';
-import ForecastInfo from '../modules/ForecastInfo/view/ForecastInfo';
-import ForecastTable from '../modules/ForecastTable/view/ForecastTable';
-import ForecastSlider from '../modules/ForecastSlider/view/ForecastSlider';
-import ForecastDetails from '../modules/ForecastDetails/view/ForecastDetails';
+import WeekForecast from '../modules/WeekForecast/view/WeekForecast';
+import TodayForecast from '../modules/TodayForecast/view/TodayForecast';
+import TodayForecastSlider from '../modules/TodayForecastSlider/view/TodayForecastSlider';
+import TodayForecastDetails from '../modules/TodayForecastDetails/view/TodayForecastDetails';
 
 export default function Forecast(): ReactElement {
     return (
         <ScrollView className="bg-slate-700 px-4 py-4">
-            <ForecastInfo/>
-            <ForecastSlider/>
-            <ForecastTable/>
-            <ForecastDetails/>
+            <TodayForecast/>
+            <TodayForecastSlider/>
+            <WeekForecast/>
+            <TodayForecastDetails/>
             <View className="mb-8"></View>
         </ScrollView>
     );
