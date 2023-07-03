@@ -7,7 +7,7 @@ import AdditionalInfo from './AdditionalInfo';
 
 export default function ForecastInfo(): ReactElement {
     return (
-        <View>
+        <View className="my-3">
             <Date/>
             <Info/>
             <Divider/>

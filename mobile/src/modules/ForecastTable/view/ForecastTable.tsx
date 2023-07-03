@@ -5,7 +5,7 @@ import ForecastTableHeader from './ForecastTableHeader';
 
 export default function ForecastTable(): ReactElement {
     return (
-        <View className="bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
+        <View className="my-3 bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
             <ForecastTableHeader/>
             <View>
                 {
