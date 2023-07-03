@@ -1,17 +1,28 @@
 import { View } from 'react-native';
+import { useSelector } from 'react-redux';
 import React, { ReactElement } from 'react';
 import ForecastTableEl from './ForecastTableEl';
+import { RootState } from '../../../redux/store';
 import ForecastTableHeader from './ForecastTableHeader';
+import { Interval, Timeline } from '../../../redux/types/DailyWeather';
+import { IDailyWeather } from '../../../redux/reducers/DailyWeather';
 
 export default function WeekForecast(): ReactElement {
+    const dailyWeather: IDailyWeather = useSelector((state: RootState) => state.dailyWeather);
+
     return (
         <View className=" my-3 bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
             <ForecastTableHeader/>
             <View>
                 {
-                    [1,2,3,4,5,6,7].map((el: number, index: number): ReactElement => {
+                    dailyWeather.data.timelines[0].intervals.map(({ startTime, values }: Interval, index: number): ReactElement => {
                         return (
-                            <ForecastTableEl key={index.toString()}/>
+                            <ForecastTableEl 
+                                date={startTime}
+                                key={index.toString()}
+                                min={values.temperature}
+                                max={values.temperatureApparent}
+                            />
                         );
                     })
                 }

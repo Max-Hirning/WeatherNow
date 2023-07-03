@@ -1,14 +1,14 @@
-import Date from './Date';
 import Info from './Info';
+import DateLabel from './DateLabel';
 import { View } from 'react-native';
-import Divider from '../../../UI/Divider';
 import React, { ReactElement } from 'react';
+import Divider from '../../../components/Divider';
 import AdditionalInfo from '../../../components/AdditionalInfo';
 
 export default function TodayForecast(): ReactElement {
     return (
         <View className=" my-3">
-            <Date/>
+            <DateLabel/>
             <Info/>
             <Divider/>
             <AdditionalInfo/>
