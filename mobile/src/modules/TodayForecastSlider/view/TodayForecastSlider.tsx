@@ -18,6 +18,7 @@ export default function TodayForecastSlider(): ReactElement {
                 return (
                     <SliderEl
                         date={item.startTime}
+                        weatherCode={item.values.weatherCode}
                         temperature={item.values.temperatureAvg}
                     />
                 );

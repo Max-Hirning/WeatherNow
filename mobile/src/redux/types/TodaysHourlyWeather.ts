@@ -11,7 +11,6 @@ export interface Interval {
 }
 
 export interface IntervalValues {
-    weatherCodeMax: number;
-    weatherCodeMin: number;
+    weatherCode: number;
     temperatureAvg: number;
 }

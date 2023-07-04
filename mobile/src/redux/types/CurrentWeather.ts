@@ -14,12 +14,11 @@ export interface IntervalValues {
     uvIndexAvg: number;
     dewPointAvg: number;
     humidityAvg: number;
+    weatherCode: number;
     windSpeedAvg: number;
     windSpeedMax: number;
     windSpeedMin: number;
     visibilityAvg: number;
-    weatherCodeMax: number;
-    weatherCodeMin: number;
     temperatureAvg: number;
     temperatureMax: number;
     temperatureMin: number;

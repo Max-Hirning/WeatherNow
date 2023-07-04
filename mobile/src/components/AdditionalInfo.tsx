@@ -17,7 +17,7 @@ export default function AdditionalInfo(): ReactElement {
                 >
                     <Image 
                         className="w-14 h-12 mr-1"
-                        source={require("../assets/icons/CloudySunny.png")}
+                        source={require("../assets/icons/cloudy/icon.png")}
                     />
                 </AdditionalInfoEl>
                 <AdditionalInfoEl
@@ -26,7 +26,7 @@ export default function AdditionalInfo(): ReactElement {
                 >
                     <Image 
                         className="w-10 h-10 mr-1"
-                        source={require("../assets/icons/Sun.png")}
+                        source={require("../assets/icons/clear/day.png")}
                     />
                 </AdditionalInfoEl>
             </View>
@@ -37,7 +37,7 @@ export default function AdditionalInfo(): ReactElement {
                 >
                     <Image 
                         className="w-14 h-12 mr-1"
-                        source={require("../assets/icons/RainySunny.png")}
+                        source={require("../assets/icons/rain/icon.png")}
                     />
                 </AdditionalInfoEl>
                 <AdditionalInfoEl
@@ -46,7 +46,7 @@ export default function AdditionalInfo(): ReactElement {
                 >
                     <Image 
                         className="w-10 h-10 mr-1"
-                        source={require("../assets/icons/Moon.png")}
+                        source={require("../assets/icons/clear/night.png")}
                     />
                 </AdditionalInfoEl>
             </View>

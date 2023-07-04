@@ -22,6 +22,7 @@ export default function WeekForecast(): ReactElement {
                                 key={index.toString()}
                                 min={values.temperatureMin}
                                 max={values.temperatureMax}
+                                weatherCode={values.weatherCode}
                             />
                         );
                     })

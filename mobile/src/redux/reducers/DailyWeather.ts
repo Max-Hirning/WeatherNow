@@ -21,8 +21,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 24.13,
                   "temperatureMin": 18.13,
-                  "weatherCodeMax": 1001,
-                  "weatherCodeMin": 1001
+                  "weatherCode": 1001,
                 }
               },
               {
@@ -30,8 +29,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 21.1,
                   "temperatureMin": 17.68,
-                  "weatherCodeMax": 1001,
-                  "weatherCodeMin": 1001
+                  "weatherCode": 1001,
                 }
               },
               {
@@ -39,8 +37,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 27.75,
                   "temperatureMin": 18.44,
-                  "weatherCodeMax": 1000,
-                  "weatherCodeMin": 1000
+                  "weatherCode": 1000,
                 }
               },
               {
@@ -48,8 +45,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 25.92,
                   "temperatureMin": 20.31,
-                  "weatherCodeMax": 2000,
-                  "weatherCodeMin": 2000
+                  "weatherCode": 2000,
                 }
               },
               {
@@ -57,8 +53,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 28.22,
                   "temperatureMin": 18.71,
-                  "weatherCodeMax": 4200,
-                  "weatherCodeMin": 4200
+                  "weatherCode": 4200,
                 }
               },
               {
@@ -66,8 +61,7 @@ const initialState: IDailyWeather = {
                 "values": {
                   "temperatureMax": 26.52,
                   "temperatureMin": 19.71,
-                  "weatherCodeMax": 4200,
-                  "weatherCodeMin": 4200
+                  "weatherCode": 4200,
                 }
               }
             ]
