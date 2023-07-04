@@ -7,9 +7,27 @@ class CurrentWeatherAPI {
         try {
             const response = await axios.get(this.url, {
                 params: {
-                    lat: 44.34,
-                    lon: 10.99,
-                    appid: this.key,
+                    fields: [
+                        "uvIndexAvg",
+                        "humidityAvg",
+                        "dewPointAvg",
+                        "weatherCode",
+                        "windSpeedAvg",
+                        "windSpeedMin",
+                        "windSpeedMax",
+                        "visibilityAvg",
+                        "temperatureAvg",
+                        "temperatureMax",
+                        "temperatureMin",
+                        "windDirectionAvg",
+                        "temperatureApparentAvg",
+                        "precipitationProbabilityAvg",
+                    ],
+                    units: "metric",
+                    startTime: "now",
+                    apikey: this.key,
+                    timesteps: [ "current" ],
+                    location: "42.3478, -71.0466",
                 }
             });
             return response.data;
@@ -19,4 +37,4 @@ class CurrentWeatherAPI {
     }
 }
 
-export const currentWeatherAPI = new CurrentWeatherAPI("https://api.openweathermap.org/data/2.5/weather", "624bcbcbbfcb213303e7eabc4b388ab6")
+export const currentWeatherAPI = new CurrentWeatherAPI("https://api.tomorrow.io/v4/timelines", "7FWANKOq0NbU0eTn2pxkpGbSPdV8yTlx")
