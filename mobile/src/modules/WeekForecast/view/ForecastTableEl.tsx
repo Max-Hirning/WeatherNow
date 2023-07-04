@@ -12,14 +12,10 @@ interface IProps {
 
 export default function ForecastTableEl({ date, min, max, weatherCode }: IProps): ReactElement {
     return (
-        <TouchableOpacity className=" flex-row items-center justify-between">
+        <TouchableOpacity className=" flex-row items-center justify-between my-2">
             <Text className="text-white font-bold text-lg">{getDayOfWeek(date).split(',')[0]}</Text>
             <View className=" flex-row items-center justify-between w-44">
-                {/* <Image 
-                    className="w-14 h-14 mr-4"
-                    source={require("../../../assets/icons/CloudySunny.png")}
-                /> */}
-                {getWeatherImage(weatherCode)}
+                {getWeatherImage(weatherCode, { width: 35, height: 35 })}
                 <View className="flex-row items-center justify-between w-20">
                     <Text className="text-white font-bold text-lg">{Math.round(min)}°</Text>
                     <Text className="text-white font-bold text-lg">{Math.round(max)}°</Text>

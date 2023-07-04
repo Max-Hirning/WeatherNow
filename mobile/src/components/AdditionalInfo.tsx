@@ -16,7 +16,7 @@ export default function AdditionalInfo(): ReactElement {
                     value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.precipitationProbabilityAvg)}%`}
                 >
                     <Image 
-                        className="w-14 h-12 mr-1"
+                        className="w-9 h-9 mr-3"
                         source={require("../assets/icons/cloudy/icon.png")}
                     />
                 </AdditionalInfoEl>
@@ -25,7 +25,7 @@ export default function AdditionalInfo(): ReactElement {
                     value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.windSpeedMax)} km/h`}
                 >
                     <Image 
-                        className="w-10 h-10 mr-1"
+                        className="w-9 h-9 mr-3"
                         source={require("../assets/icons/clear/day.png")}
                     />
                 </AdditionalInfoEl>
@@ -36,7 +36,7 @@ export default function AdditionalInfo(): ReactElement {
                     value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.humidityAvg)}%`}
                 >
                     <Image 
-                        className="w-14 h-12 mr-1"
+                        className="w-9 h-9 mr-3"
                         source={require("../assets/icons/rain/icon.png")}
                     />
                 </AdditionalInfoEl>
@@ -45,7 +45,7 @@ export default function AdditionalInfo(): ReactElement {
                     text="Sunset"
                 >
                     <Image 
-                        className="w-10 h-10 mr-1"
+                        className="w-9 h-9 mr-3"
                         source={require("../assets/icons/clear/night.png")}
                     />
                 </AdditionalInfoEl>

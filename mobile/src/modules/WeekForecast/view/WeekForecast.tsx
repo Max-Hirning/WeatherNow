@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import ForecastTableEl from './ForecastTableEl';
 import { RootState } from '../../../redux/store';
 import ForecastTableHeader from './ForecastTableHeader';
-import { Interval, Timeline } from '../../../redux/types/DailyWeather';
+import { Interval } from '../../../redux/types/DailyWeather';
 import { IDailyWeather } from '../../../redux/reducers/DailyWeather';
 
 export default function WeekForecast(): ReactElement {

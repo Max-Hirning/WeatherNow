@@ -6,7 +6,7 @@ export default function DateLabel(): ReactElement {
     return (
         <View 
             style={{ marginHorizontal: "25%" }}
-            className=" my-2 w-44 h-8 flex-row items-center justify-center bg-gray-800 rounded-full"
+            className="mb-4 w-44 h-8 flex-row items-center justify-center bg-gray-800 rounded-full"
         >
             <Text className="text-gray-400 text-base">{getDate()}</Text>
         </View>

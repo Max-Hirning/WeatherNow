@@ -12,37 +12,37 @@ export const getTemparuture = (value: number): number => {
     return Math.round(value - 273.15)
 }
 
-export const getWeatherImage = (weatherCode: number): ReactElement => {
+export const getWeatherImage = (weatherCode: number, style: any): ReactElement => {
     switch(weatherCode) {
         case 1000:
             if(isDayTodayOrNigh()) {
                 return (
-                    <Image
-                        className="w-32 h-32 mt-5"
-                        source={require("../assets/icons/clear/day.png")}
+                    <Image 
+                        style={style} 
+                        source={require("../assets/icons/clear/day.png")} 
                     />
                 );
             } else {
                 return (
-                    <Image
-                        className="w-32 h-32 mt-5"
-                        source={require("../assets/icons/clear/night.png")}
+                    <Image 
+                        style={style} 
+                        source={require("../assets/icons/clear/night.png")} 
                     />
                 );
             }
         case 1100:
             if(isDayTodayOrNigh()) {
                 return (
-                    <Image
-                        className="w-32 h-32 mt-5"
-                        source={require("../assets/icons/mostly-clear/day.png")}
+                    <Image 
+                        style={style} 
+                        source={require("../assets/icons/mostly-clear/day.png")} 
                     />
                 );
             } else {
                 return (
-                    <Image
-                        className="w-32 h-32 mt-5"
-                        source={require("../assets/icons/mostly-clear/night.png")}
+                    <Image 
+                        style={style} 
+                        source={require("../assets/icons/mostly-clear/night.png")} 
                     />
                 );
             }
@@ -50,14 +50,14 @@ export const getWeatherImage = (weatherCode: number): ReactElement => {
             if(isDayTodayOrNigh()) {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/partly-cloudy/day.png")}
                     />
                 );
             } else {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/partly-cloudy/night.png")}
                     />
                 );
@@ -66,14 +66,14 @@ export const getWeatherImage = (weatherCode: number): ReactElement => {
             if(isDayTodayOrNigh()) {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/mostly-cloudy/day.png")}
                     />
                 );
             } else {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/mostly-cloudy/night.png")}
                     />
                 );
@@ -81,133 +81,133 @@ export const getWeatherImage = (weatherCode: number): ReactElement => {
         case 1001:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/cloudy/icon.png")}
                 />
             );
         case 2100:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/light-fog/icon.png")}
                 />
             );
         case 2000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/fog/icon.png")}
                 />
             );
         case 4000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/dizzle/icon.png")}
                 />
             );
         case 4200:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/light-rain/icon.png")}
                 />
             );
         case 4001:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/rain/icon.png")}
                 />
             );
         case 4201:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/heavy-rain/icon.png")}
                 />
             );
         case 5001:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/flurries/icon.png")}
                 />
             );
         case 5100:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/light-snow/icon.png")}
                 />
             );
         case 5000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/snow/icon.png")}
                 />
             );
         case 5101:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/heavy-snow/icon.png")}
                 />
             );
         case 6000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/freezing-drizzle/icon.png")}
                 />
             );
         case 6200:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/light-freezing-drizzle/icon.png")}
                 />
             );
         case 6001:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/freezing-rain/icon.png")}
                 />
             );
         case 6201:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/heavy-freezing-rain/icon.png")}
                 />
             );
         case 7102:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/light-ice-pellets/icon.png")}
                 />
             );
         case 7000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/ice-pellets/icon.png")}
                 />
             );
         case 7101:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/heavy-ice-pellets/icon.png")}
                 />
             );
         case 8000:
             return (
                 <Image
-                    className="w-32 h-32 mt-5"
+                    style={style}
                     source={require("../assets/icons/thunderstorm/icon.png")}
                 />
             );
@@ -215,14 +215,14 @@ export const getWeatherImage = (weatherCode: number): ReactElement => {
             if(isDayTodayOrNigh()) {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/clear/day.png")}
                     />
                 );
             } else {
                 return (
                     <Image
-                        className="w-32 h-32 mt-5"
+                        style={style}
                         source={require("../assets/icons/clear/night.png")}
                     />
                 );
