@@ -18,8 +18,8 @@ export default function ForecastTableEl({ date, min, max }: IProps): ReactElemen
                     source={require("../../../assets/icons/CloudySunny.png")}
                 />
                 <View className="flex-row items-center justify-between w-20">
-                    <Text className="text-white font-bold text-lg">{Math.round(max)}°</Text>
                     <Text className="text-white font-bold text-lg">{Math.round(min)}°</Text>
+                    <Text className="text-white font-bold text-lg">{Math.round(max)}°</Text>
                 </View>
             </View>
         </TouchableOpacity>

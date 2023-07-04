@@ -20,8 +20,8 @@ export default function WeekForecast(): ReactElement {
                             <ForecastTableEl 
                                 date={startTime}
                                 key={index.toString()}
-                                min={values.temperature}
-                                max={values.temperatureApparent}
+                                min={values.temperatureMin}
+                                max={values.temperatureMax}
                             />
                         );
                     })

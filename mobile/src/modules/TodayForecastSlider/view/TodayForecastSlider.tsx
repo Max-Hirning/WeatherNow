@@ -18,7 +18,7 @@ export default function TodayForecastSlider(): ReactElement {
                 return (
                     <SliderEl
                         date={item.startTime}
-                        temperature={item.values.temperature}
+                        temperature={item.values.temperatureAvg}
                     />
                 );
             }}

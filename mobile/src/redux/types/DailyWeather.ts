@@ -11,15 +11,8 @@ export interface Interval {
 }
 
 export interface IntervalValues {
-    windGust: number;
-    cloudBase: number;
-    windSpeed: number;
-    cloudCover: number;
-    weatherCode: number;
-    temperature: number;
-    cloudCeiling: number;
-    windDirection: number;
-    precipitationType: number;
-    temperatureApparent: number;
-    precipitationIntensity: number;
+    weatherCodeMax: number;
+    weatherCodeMin: number;
+    temperatureMin: number;
+    temperatureMax: number;
 }
