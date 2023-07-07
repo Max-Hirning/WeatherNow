@@ -1,10 +1,13 @@
+import { ScrollView } from 'react-native';
 import React, { ReactElement, } from 'react';
-import { ScrollView, Text } from 'react-native';
+import WeekForecast from '../modules/WeekForecast/view/WeekForecast';
+import WeekForecastSlider from '../modules/WeekForecastSlider/view/WeekForecastSlider';
 
 export default function Forecast(): ReactElement {
     return (
         <ScrollView className="bg-slate-700 px-4 py-4">
-            <Text>sdvsdv</Text>
+            <WeekForecast/>
+            <WeekForecastSlider/>
         </ScrollView>
     );
 }

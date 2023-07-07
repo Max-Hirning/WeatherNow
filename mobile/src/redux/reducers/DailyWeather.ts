@@ -9,65 +9,77 @@ export interface IDailyWeather {
 }
 
 const initialState: IDailyWeather = {
-    "data": {
-        "timelines": [
+  "data": {
+    "timelines": [
+      {
+        "timestep": "1d",
+        "endTime": "2023-07-11T10:00:00Z",
+        "startTime": "2023-07-06T10:00:00Z",
+        "intervals": [
           {
-            "timestep": "1d",
-            "endTime": "2023-07-08T10:00:00Z",
-            "startTime": "2023-07-03T10:00:00Z",
-            "intervals": [
-              {
-                "startTime": "2023-07-03T10:00:00Z",
-                "values": {
-                  "temperatureMax": 24.13,
-                  "temperatureMin": 18.13,
-                  "weatherCode": 1001,
-                }
-              },
-              {
-                "startTime": "2023-07-04T10:00:00Z",
-                "values": {
-                  "temperatureMax": 21.1,
-                  "temperatureMin": 17.68,
-                  "weatherCode": 1001,
-                }
-              },
-              {
-                "startTime": "2023-07-05T10:00:00Z",
-                "values": {
-                  "temperatureMax": 27.75,
-                  "temperatureMin": 18.44,
-                  "weatherCode": 1000,
-                }
-              },
-              {
-                "startTime": "2023-07-06T10:00:00Z",
-                "values": {
-                  "temperatureMax": 25.92,
-                  "temperatureMin": 20.31,
-                  "weatherCode": 2000,
-                }
-              },
-              {
-                "startTime": "2023-07-07T10:00:00Z",
-                "values": {
-                  "temperatureMax": 28.22,
-                  "temperatureMin": 18.71,
-                  "weatherCode": 4200,
-                }
-              },
-              {
-                "startTime": "2023-07-08T10:00:00Z",
-                "values": {
-                  "temperatureMax": 26.52,
-                  "temperatureMin": 19.71,
-                  "weatherCode": 4200,
-                }
-              }
-            ]
+            "startTime": "2023-07-06T10:00:00Z",
+            "values": {
+              "precipitationProbability": 5,
+              "temperatureAvg": 26.95,
+              "temperatureMax": 31.38,
+              "temperatureMin": 21.69,
+              "weatherCode": 1000
+            }
+          },
+          {
+            "startTime": "2023-07-07T10:00:00Z",
+            "values": {
+              "precipitationProbability": 0,
+              "temperatureAvg": 23.94,
+              "temperatureMax": 27.53,
+              "temperatureMin": 21.07,
+              "weatherCode": 1000
+            }
+          },
+          {
+            "startTime": "2023-07-08T10:00:00Z",
+            "values": {
+              "precipitationProbability": 5,
+              "temperatureAvg": 22.2,
+              "temperatureMax": 23.86,
+              "temperatureMin": 20.93,
+              "weatherCode": 1001
+            }
+          },
+          {
+            "startTime": "2023-07-09T10:00:00Z",
+            "values": {
+              "precipitationProbability": 50,
+              "temperatureAvg": 21.85,
+              "temperatureMax": 23.58,
+              "temperatureMin": 20.33,
+              "weatherCode": 1001
+            }
+          },
+          {
+            "startTime": "2023-07-10T10:00:00Z",
+            "values": {
+              "precipitationProbability": 65,
+              "temperatureAvg": 19.35,
+              "temperatureMax": 20.39,
+              "temperatureMin": 18.54,
+              "weatherCode": 4200
+            }
+          },
+          {
+            "startTime": "2023-07-11T10:00:00Z",
+            "values": {
+              "precipitationProbability": 30,
+              "temperatureAvg": 19.93,
+              "temperatureMax": 23,
+              "temperatureMin": 18.55,
+              "weatherCode": 1000
+            }
           }
         ]
       }
+    ]
+  }
 }
 
 export const DailyWeatherSlice = createSlice({

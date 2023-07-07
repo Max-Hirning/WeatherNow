@@ -12,6 +12,21 @@ export const getTemparuture = (value: number): number => {
     return Math.round(value - 273.15)
 }
 
+export const getDayOfWeek = (dateString: string): string => {
+    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const date = new Date(dateString);
+    const dayIndex = date.getDay();
+    
+    return daysOfWeek[dayIndex];
+}
+
+export const getHourFromDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const hour = date.getHours();
+    const formattedHour = hour < 10 ? `0${hour}` : hour.toString();
+    return `${formattedHour}:00`;
+}
+
 export const getWeatherImage = (weatherCode: number, style: any): ReactElement => {
     switch(weatherCode) {
         case 1000:

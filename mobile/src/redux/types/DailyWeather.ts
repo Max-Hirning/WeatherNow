@@ -14,4 +14,6 @@ export interface IntervalValues {
     weatherCode: number;
     temperatureMin: number;
     temperatureMax: number;
+    temperatureAvg: number;
+    precipitationProbability: number;
 }

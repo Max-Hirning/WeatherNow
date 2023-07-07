@@ -11,6 +11,8 @@ class DailyWeatherAPI {
                         "weatherCode",
                         "temperatureMax",
                         "temperatureMin",
+                        "temperatureAvg",
+                        "precipitationProbability",
                     ],
                     units: "metric",
                     apikey: this.key,
