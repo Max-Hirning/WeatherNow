@@ -4,9 +4,6 @@ import { store } from "./src/redux/store";
 import Navigation from "./src/Navigation";
 import React, { ReactElement } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
-const Drawer = createDrawerNavigator();
 
 export default function App(): ReactElement {
   return (

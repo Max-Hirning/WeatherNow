@@ -1,6 +1,7 @@
 import Forecast from "./pages/Forecast";
 import React, { ReactElement } from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import SideBarMenu from "./modules/SideBarMenu/view/SideBarMenu";
+import { DrawerContentComponentProps, createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,6 +18,7 @@ export default function Navigation(): ReactElement {
                 headerTintColor: 'white',
             }}
             initialRouteName="Forecast"
+            drawerContent={(props: DrawerContentComponentProps): ReactElement => SideBarMenu(props)}
         >
             <Drawer.Screen name="Forecast" component={Forecast} />
         </Drawer.Navigator>

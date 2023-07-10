@@ -16,7 +16,7 @@ export default function AdditionalInfo(): ReactElement {
             >
                 <Image 
                     className="w-9 h-9 mr-3"
-                    source={require("../assets/icons/cloudy.png")}
+                    source={require("../assets/images/cloudy.png")}
                 />
             </AdditionalInfoEl>
             <AdditionalInfoEl
@@ -25,7 +25,7 @@ export default function AdditionalInfo(): ReactElement {
             >
                 <Image 
                     className="w-9 h-9 mr-3"
-                    source={require("../assets/icons/rain.png")}
+                    source={require("../assets/images/rain.png")}
                 />
             </AdditionalInfoEl>
         </View>
