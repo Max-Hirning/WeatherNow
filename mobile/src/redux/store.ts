@@ -1,13 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dailyWeatherReducer from './reducers/DailyWeather';
-import currentWeatheReducer from './reducers/CurrentWeather';
-import todaysHourlyWeatherReducer from './reducers/TodaysHourlyWeather';
+import forecastWeatherReducer from './reducers/forecastWeather';
 
 export const store = configureStore({
     reducer: {
-        dailyWeather: dailyWeatherReducer,
-        currentWeather: currentWeatheReducer,
-        todaysHourlyWeather: todaysHourlyWeatherReducer,
+        forecastWeather: forecastWeatherReducer,
     },
 })
 

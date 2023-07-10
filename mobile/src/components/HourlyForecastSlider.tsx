@@ -4,23 +4,23 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import React, { ReactElement } from 'react';
 import { getHourFromDate } from '../controllers/date';
-import { Interval } from '../redux/types/TodaysHourlyWeather';
-import { ITodaysHourlyWeather } from '../redux/reducers/TodaysHourlyWeather';
+import { IHourlyForecast } from '../redux/types/forecastWeather';
+import { IForecastWeather } from '../redux/reducers/forecastWeather';
 
 export default function HourlyForecastSlider(): ReactElement {
-    const todaysHourlyWeather: ITodaysHourlyWeather = useSelector((state: RootState) => state.todaysHourlyWeather);
+    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
         <FlatList
             horizontal={true}
             className=' my-3 pb-2'
-            data={todaysHourlyWeather.data.timelines[0].intervals}
-            renderItem={({ item }: { item: Interval }): ReactElement => {
+            data={forecastWeather.forecast.forecastday[0].hour}
+            renderItem={({ item }: { item: IHourlyForecast }): ReactElement => {
                 return (
                     <SliderEl
-                        weatherCode={item.values.weatherCode}
-                        title={getHourFromDate(item.startTime)}
-                        value={`${Math.round(item.values.temperatureAvg)}°`}
+                        value={`${item.temp_c}°`}
+                        weatherIcon={item.condition.icon}
+                        title={getHourFromDate(item.time)}
                     />
                 );
             }}

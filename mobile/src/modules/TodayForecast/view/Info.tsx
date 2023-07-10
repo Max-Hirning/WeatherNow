@@ -1,27 +1,32 @@
 import { useSelector } from 'react-redux';
-import { View, Text } from 'react-native';
 import React, { ReactElement } from 'react';
 import { RootState } from '../../../redux/store';
-import { getWeatherImage } from '../../../controllers/date';
-import { ICurrentWeather } from '../../../redux/reducers/CurrentWeather';
-import { weatherCodeFullDay } from '../../../model/weatherCode';
+import { View, Text, Image } from 'react-native';
+import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function Info(): ReactElement {
-    const currentWeather: ICurrentWeather = useSelector((state: RootState) => state.currentWeather);
+    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
         <View className=" flex-col">
             <View className="flex-row items-center justify-between">
-                {getWeatherImage(currentWeather.data.timelines[0].intervals[0].values.weatherCode, { width: 130, height: 130 })}
+                <Image 
+                    style={{
+                        width: 130, 
+                        height: 130
+                    }}
+                    source={{
+                        uri: `https:${forecastWeather.current.condition.icon}`
+                    }} 
+                />
                 <View>
-                    <Text className="font-bold text-8xl text-gray-400">{Math.round(currentWeather.data.timelines[0].intervals[0].values.temperatureAvg)}°</Text>
-                    <Text className="text-white text-base">{weatherCodeFullDay[`${currentWeather.data.timelines[0].intervals[0].values.weatherCode}`]}</Text>
+                    <Text className="font-bold text-8xl text-gray-400">{forecastWeather.current.temp_c}°</Text>
+                    <Text className="text-white text-base">{forecastWeather.current.condition.text}</Text>
                 </View>
             </View>
-            <View className="flex-row items-center justify-between mt-2">
-                <Text className="text-gray-400 text-base">{Math.round(currentWeather.data.timelines[0].intervals[0].values.temperatureMin)}°/{Math.round(currentWeather.data.timelines[0].intervals[0].values.temperatureMax)}° | Feels like <Text className="text-white">{Math.round(currentWeather.data.timelines[0].intervals[0].values.temperatureApparentAvg)}°C</Text></Text>
-                <Text className="text-gray-400 text-base">|</Text>
-                <Text className="text-gray-400 text-base">Wind <Text className="text-white">{Math.round(currentWeather.data.timelines[0].intervals[0].values.windSpeedAvg)} KM</Text>/H WSW</Text>
+            <View className="flex-row items-center justify-between mt-4">
+                <Text className="text-gray-400 text-base">Feels like <Text className="text-white">{forecastWeather.current.feelslike_c}°C</Text></Text>
+                <Text className="text-gray-400 text-base">Wind <Text className="text-white">{forecastWeather.current.wind_kph} KM</Text>/H {forecastWeather.current.wind_dir}</Text>
             </View>
         </View>
     );

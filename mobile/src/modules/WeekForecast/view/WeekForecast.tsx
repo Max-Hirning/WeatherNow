@@ -4,25 +4,25 @@ import React, { ReactElement } from 'react';
 import ForecastTableEl from './ForecastTableEl';
 import { RootState } from '../../../redux/store';
 import ForecastTableHeader from './ForecastTableHeader';
-import { Interval } from '../../../redux/types/DailyWeather';
-import { IDailyWeather } from '../../../redux/reducers/DailyWeather';
+import { IForecastDay } from '../../../redux/types/forecastWeather';
+import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function WeekForecast(): ReactElement {
-    const dailyWeather: IDailyWeather = useSelector((state: RootState) => state.dailyWeather);
+    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
-        <View className=" my-3 bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
+        <View className="my-3 bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
             <ForecastTableHeader/>
             <View>
                 {
-                    dailyWeather.data.timelines[0].intervals.map(({ startTime, values }: Interval, index: number): ReactElement => {
+                    (forecastWeather.forecast.forecastday).map((day: IForecastDay, index: number): ReactElement => {
                         return (
                             <ForecastTableEl 
-                                date={startTime}
+                                date={day.date}
                                 key={index.toString()}
-                                min={values.temperatureMin}
-                                max={values.temperatureMax}
-                                weatherCode={values.weatherCode}
+                                min={day.day.mintemp_c}
+                                max={day.day.maxtemp_c}
+                                weatherIcon={day.day.condition.icon}
                             />
                         );
                     })

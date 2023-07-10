@@ -3,32 +3,32 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import React, { ReactElement } from 'react';
 import ForecastDetail from '../UI/ForecastDetail';
-import { ICurrentWeather } from '../redux/reducers/CurrentWeather';
+import { IForecastWeather } from '../redux/reducers/forecastWeather';
 
 export default function ForecastDetails(): ReactElement {
-    const currentWeather: ICurrentWeather = useSelector((state: RootState) => state.currentWeather);
+    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
-        <View className="w-36 my-5 ">
+        <View className="w-40 my-5 ">
             <ForecastDetail 
                 title="Feels like" 
-                value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.temperatureApparentAvg)}°`}
+                value={`${forecastWeather.current.temp_c}°`}
             />
             <ForecastDetail 
                 title="Humidity" 
-                value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.humidityAvg)}%`}
+                value={`${forecastWeather.current.humidity}%`}
             />
             <ForecastDetail 
                 title="Visibility" 
-                value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.visibilityAvg)} mi`}
+                value={`${forecastWeather.current.vis_km} km`}
             />
             <ForecastDetail 
                 title="UV Index" 
-                value={`Low ${Math.round(currentWeather.data.timelines[0].intervals[0].values.uvIndexAvg)}`}
+                value={`Low ${forecastWeather.current.uv}`}
             />
             <ForecastDetail 
-                title="Dew point" 
-                value={`${Math.round(currentWeather.data.timelines[0].intervals[0].values.dewPointAvg)}°`}
+                title="Wind gust" 
+                value={`${forecastWeather.current.gust_kph} kph`}
             />
         </View>
     );
