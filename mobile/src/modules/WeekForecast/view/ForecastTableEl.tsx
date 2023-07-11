@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { getDayOfWeek } from '../controller/date';
+import Collapsible from 'react-native-collapsible';
 import React, { ReactElement, useState } from 'react';
 import ChevronIcon from "../../../assets/icons/chevron";
-import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { IHourlyForecast } from '../../../redux/types/forecastWeather';
 import HourlyForecastSlider from '../../../components/HourlyForecastSlider';
+import { View, Text, Image, TouchableOpacity, Animated, TouchableWithoutFeedback } from 'react-native';
 
 interface IProps {
     min: number;
@@ -16,25 +17,39 @@ interface IProps {
 }
 
 export default function ForecastTableEl({ date, min, max, index, weatherIcon }: IProps): ReactElement {
+    const spinValue = React.useState(new Animated.Value(0))[0];
     const [showAdditionalInfo, setShowAdditionalInfo] = useState<boolean>(false);
     const hourlyForecast: IHourlyForecast[] = useSelector((state: RootState) => state.forecastWeather.forecast.forecastday[index].hour);
 
-    const getBackgroundColor = (): string => {
-        return (showAdditionalInfo) ? "bg-slate-600" : "bg-inherit";
-    }
+    const openCloseForecastInfo = () => {
+        Animated.spring(spinValue, {
+            useNativeDriver: true,
+            toValue: +!showAdditionalInfo,
+        }).start();
+        setShowAdditionalInfo((state: boolean) => !state);
+    };
+
+    const spinDeg = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '180deg']
+    })
+
+    const animatedScaleStyle = { transform: [{rotate: spinDeg}] };
 
     return (
-        <View className={`my-2 ${getBackgroundColor()} rounded-xl px-3`}>
+        <View className="my-2 bg-slate-700 rounded-xl px-3">
             <TouchableOpacity 
+                onPress={openCloseForecastInfo}
                 className="flex-row items-center justify-between"
-                onPress={() => setShowAdditionalInfo((state: boolean) => !state)}
             >
                 <View className="flex-row items-center">
-                    <ChevronIcon
-                        width={14}
-                        height={14}
-                        color="white"
-                    />
+                    <Animated.View style={[animatedScaleStyle]}>
+                        <ChevronIcon
+                            width={14}
+                            height={14}
+                            color="white"
+                        />
+                    </Animated.View>
                     <Text className="text-white font-bold text-lg ml-2">{getDayOfWeek(date).split(',')[0]}</Text>
                 </View>
                 <View className="flex-row items-center justify-between">
@@ -53,10 +68,9 @@ export default function ForecastTableEl({ date, min, max, index, weatherIcon }: 
                     </View>
                 </View>
             </TouchableOpacity>
-            {
-                (showAdditionalInfo) &&
+            <Collapsible collapsed={!showAdditionalInfo}>
                 <HourlyForecastSlider data={hourlyForecast}/>
-            }
+            </Collapsible>
         </View>
     );
 }

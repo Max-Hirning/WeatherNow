@@ -5556,7 +5556,7 @@ nanoid@^3.1.23, nanoid@^3.3.6:
 
 nativewind@^2.0.11:
   version "2.0.11"
-  resolved "https://registry.yarnpkg.com/nativewind/-/nativewind-2.0.11.tgz#aaa80a65b663a49856b26bd4f3153161f70299d7"
+  resolved "https://registry.npmjs.org/nativewind/-/nativewind-2.0.11.tgz#aaa80a65b663a49856b26bd4f3153161f70299d7"
   integrity sha512-qCEXUwKW21RYJ33KRAJl3zXq2bCq82WoI564fI21D/TiqhfmstZOqPN53RF8qK1NDK6PGl56b2xaTxgObEePEg==
   dependencies:
     "@babel/generator" "^7.18.7"
@@ -6155,6 +6155,11 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-collapsible@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/react-native-collapsible/-/react-native-collapsible-1.6.1.tgz#27e289831a6955aebde98abff2424a7710f36f02"
+  integrity sha512-orF4BeiXd2hZW7fu9YcqIJXzN6TJcFcddY807D3MAOVktLuW9oQ+RIkrTJ5DR3v9ZOFfREkOjEmS79qeUTvkBQ==
 
 react-native-gesture-handler@^2.12.0:
   version "2.12.0"
