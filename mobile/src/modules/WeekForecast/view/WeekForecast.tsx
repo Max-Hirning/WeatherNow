@@ -18,6 +18,7 @@ export default function WeekForecast(): ReactElement {
                     (forecastWeather.forecast.forecastday).map((day: IForecastDay, index: number): ReactElement => {
                         return (
                             <ForecastTableEl 
+                                index={index}
                                 date={day.date}
                                 key={index.toString()}
                                 min={day.day.mintemp_c}

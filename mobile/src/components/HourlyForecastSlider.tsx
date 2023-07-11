@@ -7,14 +7,19 @@ import { getHourFromDate } from '../controllers/date';
 import { IHourlyForecast } from '../redux/types/forecastWeather';
 import { IForecastWeather } from '../redux/reducers/forecastWeather';
 
-export default function HourlyForecastSlider(): ReactElement {
+interface PropsI {
+    data: IHourlyForecast[]
+}
+
+export default function HourlyForecastSlider({ data }: PropsI): ReactElement {
     const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
         <FlatList
+            data={data}
             horizontal={true}
-            className=' my-3 pb-2'
-            data={forecastWeather.forecast.forecastday[0].hour}
+            className='my-3 pb-2'
+            // data={forecastWeather.forecast.forecastday[0].hour}
             renderItem={({ item }: { item: IHourlyForecast }): ReactElement => {
                 return (
                     <SliderEl
