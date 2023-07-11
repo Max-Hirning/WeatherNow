@@ -15,6 +15,7 @@ export default function Navigation(): ReactElement {
                     borderBottomColor: '#D8D8D8',
                     backgroundColor: 'background-color: rgb(51 65 85)',
                 },
+                swipeEnabled: false,
                 headerTintColor: 'white',
             }}
             initialRouteName="Forecast"
