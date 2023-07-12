@@ -8,7 +8,7 @@ class ForecastWeatherAPI {
             const options = {
                 params: {
                     days: '3',
-                    q: 'London',
+                    q: 'Kyiv',
                 },
                 method: 'GET',
                 url: this.url,

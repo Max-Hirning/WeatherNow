@@ -20,13 +20,13 @@ export default function Info(): ReactElement {
                     }} 
                 />
                 <View>
-                    <Text className="font-bold text-8xl text-gray-400">{forecastWeather.current.temp_c}°</Text>
+                    <Text className="font-bold text-8xl text-gray-400">{Math.round(forecastWeather.current.temp_c)}°</Text>
                     <Text className="text-white text-base">{forecastWeather.current.condition.text}</Text>
                 </View>
             </View>
             <View className="flex-row items-center justify-between mt-4">
-                <Text className="text-gray-400 text-base">Feels like <Text className="text-white">{forecastWeather.current.feelslike_c}°C</Text></Text>
-                <Text className="text-gray-400 text-base">Wind <Text className="text-white">{forecastWeather.current.wind_kph} KM</Text>/H {forecastWeather.current.wind_dir}</Text>
+                <Text className="text-gray-400 text-base">Feels like <Text className="text-white">{Math.round(forecastWeather.current.feelslike_c)}°C</Text></Text>
+                <Text className="text-gray-400 text-base">Wind <Text className="text-white">{Math.round(forecastWeather.current.wind_kph)} KM</Text>/H {forecastWeather.current.wind_dir}</Text>
             </View>
         </View>
     );

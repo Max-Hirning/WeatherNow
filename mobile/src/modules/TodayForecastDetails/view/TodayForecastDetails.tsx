@@ -24,7 +24,7 @@ export default function TodayForecastDetails(): ReactElement {
                 />
                 <ForecastDetails/>
             </View>
-            <Text className="text-gray-400 text-base">Tonight - {forecastWeather.current.condition.text}. Winds from {forecastWeather.current.wind_dir} to {forecastWeather.current.wind_kph} kph. The overnight low will be {forecastWeather.current.feelslike_c}°C</Text>
+            <Text className="text-gray-400 text-base">Today - {forecastWeather.current.condition.text}. Winds from {forecastWeather.current.wind_dir} to {Math.round(forecastWeather.current.wind_kph)} kph. The overnight low will be {Math.round(forecastWeather.current.feelslike_c)}°C</Text>
         </View>
     );
 }

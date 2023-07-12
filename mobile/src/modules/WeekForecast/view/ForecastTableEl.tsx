@@ -63,8 +63,8 @@ export default function ForecastTableEl({ date, min, max, index, weatherIcon }: 
                         }} 
                     />
                     <View className="flex-row items-center justify-between w-24 ml-3">
-                        <Text className="text-white font-bold text-lg">{min}°</Text>
-                        <Text className="text-white font-bold text-lg">{max}°</Text>
+                        <Text className="text-white font-bold text-lg">{Math.round(min)}°</Text>
+                        <Text className="text-white font-bold text-lg">{Math.round(max)}°</Text>
                     </View>
                 </View>
             </TouchableOpacity>

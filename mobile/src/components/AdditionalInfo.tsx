@@ -12,7 +12,7 @@ export default function AdditionalInfo(): ReactElement {
         <View className="flex-row items-center justify-between ">
             <AdditionalInfoEl
                 text="Percipitation"
-                value={`${forecastWeather.current.precip_in}%`}
+                value={`${Math.round(forecastWeather.current.precip_in)}%`}
             >
                 <Image 
                     className="w-9 h-9 mr-3"
@@ -21,7 +21,7 @@ export default function AdditionalInfo(): ReactElement {
             </AdditionalInfoEl>
             <AdditionalInfoEl
                 text="Humidity"
-                value={`${forecastWeather.current.humidity}%`}
+                value={`${Math.round(forecastWeather.current.humidity)}%`}
             >
                 <Image 
                     className="w-9 h-9 mr-3"
