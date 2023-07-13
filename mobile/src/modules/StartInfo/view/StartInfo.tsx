@@ -1,16 +1,43 @@
 import { data } from "../model/data";
 import ArrowIcon from "../../../assets/icons/arrow";
-import React, { ReactElement, useState } from 'react';
-import { View, TouchableOpacity, Text, Image  } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import { useNavigation } from "@react-navigation/core";
+import React, { ReactElement, useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, Image  } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function StartInfo(): ReactElement {
     const navigation: any = useNavigation();
     const [currentPage, setCurrentPage] = useState<number>(0);
 
-    const moveToApp = (): void => {
-        navigation.navigate("App");
+    useEffect(() => {
+        test();
+    }, []);
+
+    const test = async (): Promise<void> => {
+        try {
+            const value = await AsyncStorage.getItem('tutorialFinished');
+            if (value) {
+                if(JSON.parse(value)) moveToApp();
+                setTimeout(() => {
+                    SplashScreen.hide();
+                }, 2000);
+            } else {
+                SplashScreen.hide();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const moveToApp = async (): Promise<void> => {
+        try {
+            navigation.navigate("App");
+            AsyncStorage.setItem('tutorialFinished', JSON.stringify(true));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const moveToNext = (): void => {
