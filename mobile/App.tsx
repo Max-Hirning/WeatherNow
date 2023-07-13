@@ -15,8 +15,7 @@ export default function App(): ReactElement {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        {/* <Navigation/> */}
-        <InfoPage/>
+        <Navigation/>
         <StatusBar
           animated={true}
           backgroundColor="rgb(30 41 59)"
