@@ -1,9 +1,9 @@
 import Share from 'react-native-share';
-import { Text, View } from "react-native";
 import React, { ReactElement } from 'react';
 import StarIcon from "../assets/icons/star";
 import ShareIcon from "../assets/icons/share";
 import MessageIcon from "../assets/icons/message";
+import { Text, View, Linking  } from "react-native";
 import SideBarMenuNavEl from '../UI/SideBarMenuNavEl';
 
 export default function SideBarMenuNavEls(): ReactElement {
@@ -15,6 +15,10 @@ export default function SideBarMenuNavEls(): ReactElement {
             console.log(error);
         }
     };
+
+    const openAppInGooglePlay = (): void => {
+        Linking.openURL("market://details?id=com.finance.tracker");
+    }
 
     return (
         <View className="mb-4">
@@ -31,7 +35,7 @@ export default function SideBarMenuNavEls(): ReactElement {
             </SideBarMenuNavEl>
             <SideBarMenuNavEl 
                 text="Rate this app" 
-                actionFunc={shareApp}
+                actionFunc={openAppInGooglePlay}
             >
                 <StarIcon
                     width={30}
