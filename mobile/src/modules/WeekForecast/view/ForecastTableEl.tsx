@@ -4,7 +4,7 @@ import { getDayOfWeek } from '../controller/date';
 import Collapsible from 'react-native-collapsible';
 import React, { ReactElement, useState } from 'react';
 import ChevronIcon from "../../../assets/icons/chevron";
-import { IHourlyForecast } from '../../../redux/types/forecastWeather';
+import { IHourlyForecast } from '../../../redux/types';
 import HourlyForecastSlider from '../../../components/HourlyForecastSlider';
 import { View, Text, Image, TouchableOpacity, Animated, TouchableWithoutFeedback } from 'react-native';
 

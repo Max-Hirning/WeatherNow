@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import React, { ReactElement } from 'react';
 import { RootState } from '../../../redux/store';
-import { IHourlyForecast } from '../../../redux/types/forecastWeather';
+import { IHourlyForecast } from '../../../redux/types';
 import HourlyForecastSlider from '../../../components/HourlyForecastSlider';
 
 export default function TodayForecastSlider(): ReactElement {

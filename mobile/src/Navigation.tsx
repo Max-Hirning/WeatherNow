@@ -1,6 +1,11 @@
+import { AppState } from 'react-native';
 import Forecast from "./pages/Forecast";
-import React, { ReactElement } from 'react';
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import React, { ReactElement, useEffect } from 'react';
+import { ILocations } from "./redux/reducers/locations";
 import StartInfo from "./modules/StartInfo/view/StartInfo";
+import { saveInAsyncStorage } from "./controllers/asyncStorage";
 import SideBarMenu from "./modules/SideBarMenu/view/SideBarMenu";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentComponentProps, createDrawerNavigator } from '@react-navigation/drawer';
@@ -30,6 +35,20 @@ function App(): ReactElement {
 }
 
 export default function Navigation(): ReactElement {
+    const locations: ILocations[] = useSelector((state: RootState) => state.locations);
+
+    useEffect(() => {
+        const subscription = AppState.addEventListener('change', nextAppState => {
+            if(nextAppState === "background") {
+                saveInAsyncStorage("locations", JSON.stringify(locations));
+            }
+        });
+        
+        return () => {
+            subscription.remove();
+        };
+    }, [locations]);
+
     return (
         <Stack.Navigator 
             screenOptions={{

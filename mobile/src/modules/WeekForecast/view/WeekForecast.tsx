@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import ForecastTableEl from './ForecastTableEl';
 import { RootState } from '../../../redux/store';
 import ForecastTableHeader from './ForecastTableHeader';
-import { IForecastDay } from '../../../redux/types/forecastWeather';
+import { IForecastDay } from '../../../redux/types';
 import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function WeekForecast(): ReactElement {

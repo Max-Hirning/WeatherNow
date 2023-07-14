@@ -2,7 +2,7 @@ import SliderEl from '../UI/SliderEl';
 import { FlatList } from 'react-native';
 import React, { ReactElement, useRef } from 'react';
 import { getHourFromDate } from '../controllers/date';
-import { IHourlyForecast } from '../redux/types/forecastWeather';
+import { IHourlyForecast } from '../redux/types';
 import { checkDateWithToday } from '../modules/TodayForecastSlider/controller/date';
 
 interface PropsI {

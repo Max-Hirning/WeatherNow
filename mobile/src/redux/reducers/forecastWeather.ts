@@ -1,12 +1,12 @@
-import { IForecast } from '../types/forecastWeather';
+import { IForecast } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { ILocation, ICurrentWeather } from '../types/forecastWeather';
+import { ILocation, ICurrentWeather } from '../types';
 
 export interface IForecastWeather {
-    location: ILocation;
-    forecast: IForecast;
-    current: ICurrentWeather;
+  location: ILocation;
+  forecast: IForecast;
+  current: ICurrentWeather;
 }
 
 const initialState: IForecastWeather = {
@@ -2990,14 +2990,14 @@ const initialState: IForecastWeather = {
 }
 
 export const forecastWeatherSlice = createSlice({
-    name: 'forecastWeatherSlice',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(setForecastWeatherAsync.fulfilled, (_: IForecastWeather, { payload }: PayloadAction<IForecastWeather>): IForecastWeather => {
-            return payload;
-        });
-    },
+  name: 'forecastWeatherSlice',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(setForecastWeatherAsync.fulfilled, (_: IForecastWeather, { payload }: PayloadAction<IForecastWeather>): IForecastWeather => {
+      return payload;
+    });
+  },
 });
 
 export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setForecastWeather", async (payload: IForecastWeather): Promise<IForecastWeather> => {

@@ -1,23 +1,28 @@
 import { data } from "../model/data";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
 import ArrowIcon from "../../../assets/icons/arrow";
 import SplashScreen from 'react-native-splash-screen';
 import { useNavigation } from "@react-navigation/core";
 import React, { ReactElement, useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, Image  } from 'react-native';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setLocationsAsync } from "../../../redux/reducers/locations";
 
 
 export default function StartInfo(): ReactElement {
     const navigation: any = useNavigation();
+    const dispatch: AppDispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState<number>(0);
 
     useEffect(() => {
-        test();
+        prepareApp();
     }, []);
 
-    const test = async (): Promise<void> => {
+    const prepareApp = async (): Promise<void> => {
         try {
             const value = await AsyncStorage.getItem('tutorialFinished');
+            dispatch(setLocationsAsync());
             if (value) {
                 if(JSON.parse(value)) moveToApp();
                 setTimeout(() => {
