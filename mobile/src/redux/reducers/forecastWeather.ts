@@ -2,6 +2,7 @@ import { IForecast } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { ILocation, ICurrentWeather } from '../types';
+import { forecastWeatherAPI } from '../../controllers/api/forecastWeather';
 
 export interface IForecastWeather {
   location: ILocation;
@@ -3000,8 +3001,9 @@ export const forecastWeatherSlice = createSlice({
   },
 });
 
-export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setForecastWeather", async (payload: IForecastWeather): Promise<IForecastWeather> => {
-	return payload;
+export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setForecastWeather", async (payload: string): Promise<IForecastWeather> => {
+	const response = await forecastWeatherAPI.get(payload);
+  return response;
 });
 
 export default forecastWeatherSlice.reducer;

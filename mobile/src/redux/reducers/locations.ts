@@ -8,19 +8,40 @@ export interface ILocations {
     isActive: boolean;
 }
 
+export interface IAddLocationPayload { 
+    index: number; 
+    data: ILocation;
+}
+
 const initialState: ILocations[] = []
 
 export const locationsSlice = createSlice({
     name: 'locationsSlice',
     initialState,
     reducers: {
+        addLocation: (state: ILocations[], { payload }: PayloadAction<IAddLocationPayload>): ILocations[] => {
+            if(payload.index === -1) {
+                state.push({
+                    isActive: true,
+                    data: payload.data,
+                })
+            } else {
+                state[payload.index] = {
+                    isActive: true,
+                    data: payload.data,
+                }
+            }
+            return state;
+        },
+        reset: (): ILocations[] => {
+            return [];
+        },
         choseLocation: (state: ILocations[], { payload }: PayloadAction<number>): ILocations[] => {
             const foundedIndex: number = state.findIndex((el: ILocations): boolean => el.isActive === true);
             state[foundedIndex].isActive = false;
             state[payload].isActive = true;
-            console.log(state);
             return state;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(setLocationsAsync.fulfilled, (_: ILocations[], { payload }: PayloadAction<ILocations[]>): ILocations[] => {
@@ -33,6 +54,7 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
 	try {
         const result = await AsyncStorage.getItem('locations');
         if(result) {
+            console.log('start', JSON.parse(result));
             return JSON.parse(result);
         }
     } catch (error) {
@@ -41,6 +63,6 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
     return [];
 });
 
-export const { choseLocation } = locationsSlice.actions
+export const { reset, choseLocation, addLocation } = locationsSlice.actions
 
 export default locationsSlice.reducer;

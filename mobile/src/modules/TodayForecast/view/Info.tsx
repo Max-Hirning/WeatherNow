@@ -1,11 +1,19 @@
 import { useSelector } from 'react-redux';
-import React, { ReactElement } from 'react';
 import { RootState } from '../../../redux/store';
 import { View, Text, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import React, { ReactElement, useEffect } from 'react';
 import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function Info(): ReactElement {
+    const navigation = useNavigation();
     const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+
+    useEffect(() => {
+        navigation.setOptions({
+            title: `${forecastWeather.location.name}`
+        })
+    }, [forecastWeather]);
 
     return (
         <View className=" flex-col">

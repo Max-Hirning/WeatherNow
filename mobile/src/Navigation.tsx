@@ -1,7 +1,10 @@
-import { AppState } from 'react-native';
+import { AppState, Button } from 'react-native';
 import Forecast from "./pages/Forecast";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./redux/store";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { reset } from "./redux/reducers/locations";
+
 import React, { ReactElement, useEffect } from 'react';
 import { ILocations } from "./redux/reducers/locations";
 import StartInfo from "./modules/StartInfo/view/StartInfo";
@@ -35,11 +38,13 @@ function App(): ReactElement {
 }
 
 export default function Navigation(): ReactElement {
+    const dispatch: AppDispatch = useDispatch();
     const locations: ILocations[] = useSelector((state: RootState) => state.locations);
 
     useEffect(() => {
         const subscription = AppState.addEventListener('change', nextAppState => {
             if(nextAppState === "background") {
+                console.log('end', locations)
                 saveInAsyncStorage("locations", JSON.stringify(locations));
             }
         });
@@ -50,14 +55,28 @@ export default function Navigation(): ReactElement {
     }, [locations]);
 
     return (
-        <Stack.Navigator 
-            screenOptions={{
-                headerShown: false
-            }}
-            initialRouteName="StartInfo"
-        >
-            <Stack.Screen name="App" component={App} />
-            <Stack.Screen name="StartInfo" component={StartInfo} />
-        </Stack.Navigator>
+        <>
+            <Button
+                title="Press"
+                onPress={async () => {
+                try {
+                    dispatch(reset());
+                    AsyncStorage.removeItem("tutorialFinished");
+                    AsyncStorage.removeItem("locations");
+                } catch (error) {
+                    console.log(error);
+                }
+                }}
+            />
+            <Stack.Navigator 
+                screenOptions={{
+                    headerShown: false
+                }}
+                initialRouteName="StartInfo"
+            >
+                <Stack.Screen name="App" component={App} />
+                <Stack.Screen name="StartInfo" component={StartInfo} />
+            </Stack.Navigator>
+        </>
     );
 }

@@ -3,12 +3,12 @@ import axios from "axios";
 class ForecastWeatherAPI {
     constructor(protected url: string, private key: string, private host: string) {}
 
-    async get() {
+    async get(location: string) {
         try {
             const options = {
                 params: {
                     days: '3',
-                    q: 'Kyiv',
+                    q: location,
                 },
                 method: 'GET',
                 url: this.url,

@@ -4,11 +4,13 @@ import { AppDispatch } from "../../../redux/store";
 import ArrowIcon from "../../../assets/icons/arrow";
 import SplashScreen from 'react-native-splash-screen';
 import { useNavigation } from "@react-navigation/core";
+import Geolocation from 'react-native-geolocation-service';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
+import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setLocationsAsync } from "../../../redux/reducers/locations";
-
+import { ILocations, setLocationsAsync } from "../../../redux/reducers/locations";
+import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
 
 export default function StartInfo(): ReactElement {
     const navigation: any = useNavigation();
@@ -25,11 +27,37 @@ export default function StartInfo(): ReactElement {
             dispatch(setLocationsAsync());
             if (value) {
                 if(JSON.parse(value)) moveToApp();
+                const result = await AsyncStorage.getItem('locations');
+                if(result) {
+                    const activeLocation = JSON.parse(result).find((el: ILocations) => el.isActive === true);
+                    if(activeLocation) {
+                        dispatch(setForecastWeatherAsync(activeLocation.data.name));
+                    } else {
+                        dispatch(setForecastWeatherAsync("Berlin"));
+                    }
+                } else {
+                    dispatch(setForecastWeatherAsync("Madrid"));
+                }
                 setTimeout(() => {
                     SplashScreen.hide();
                 }, 2000);
             } else {
                 SplashScreen.hide();
+                const permission = await permissionAction();
+                if(permission) {
+                    Geolocation.getCurrentPosition(
+                        (position) => {
+                            console.log(`${position.coords.latitude},${position.coords.longitude}`);
+                            dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
+                        },
+                        (error) => {
+                            console.log(error.code, error.message);
+                        },
+                        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+                    )
+                } else {
+                    dispatch(setForecastWeatherAsync("Paris"));
+                }
             }
         } catch (error) {
             console.log(error);

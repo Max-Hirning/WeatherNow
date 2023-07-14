@@ -27,6 +27,15 @@ export default function SideBarMenuLocationEl({ data, index, isActive }: IProps)
         }
     }
 
+    const formatCountryName = (): string => {
+        switch(data.country) {
+            case "United States of America":
+                return "USA";
+            default:
+                return data.country;
+        }
+    }
+
     return (
         <TouchableOpacity 
             disabled={isActive}
@@ -40,7 +49,7 @@ export default function SideBarMenuLocationEl({ data, index, isActive }: IProps)
             />
             <View>
                 <Text className="text-white text-base ml-3">{data.name}</Text>
-                <Text className="text-white text-base ml-3">{data.country}</Text>
+                <Text className="text-white text-base ml-3">{formatCountryName()}</Text>
             </View>
         </TouchableOpacity>
     );
