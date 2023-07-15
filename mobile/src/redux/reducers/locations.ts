@@ -54,11 +54,10 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
 	try {
         const result = await AsyncStorage.getItem('locations');
         if(result) {
-            console.log('start', JSON.parse(result));
             return JSON.parse(result);
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return [];
 });

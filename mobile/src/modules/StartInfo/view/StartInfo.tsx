@@ -9,7 +9,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ILocations, setLocationsAsync } from "../../../redux/reducers/locations";
+import { setLocationsAsync } from "../../../redux/reducers/locations";
 import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
 
 export default function StartInfo(): ReactElement {
@@ -25,42 +25,30 @@ export default function StartInfo(): ReactElement {
         try {
             const value = await AsyncStorage.getItem('tutorialFinished');
             dispatch(setLocationsAsync());
-            if (value) {
+            if(value) {
                 if(JSON.parse(value)) moveToApp();
-                const result = await AsyncStorage.getItem('locations');
-                if(result) {
-                    const activeLocation = JSON.parse(result).find((el: ILocations) => el.isActive === true);
-                    if(activeLocation) {
-                        dispatch(setForecastWeatherAsync(activeLocation.data.name));
-                    } else {
-                        dispatch(setForecastWeatherAsync("Berlin"));
-                    }
-                } else {
-                    dispatch(setForecastWeatherAsync("Madrid"));
-                }
-                setTimeout(() => {
-                    SplashScreen.hide();
-                }, 2000);
-            } else {
-                SplashScreen.hide();
+
                 const permission = await permissionAction();
+
                 if(permission) {
                     Geolocation.getCurrentPosition(
                         (position) => {
-                            console.log(`${position.coords.latitude},${position.coords.longitude}`);
                             dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
                         },
                         (error) => {
-                            console.log(error.code, error.message);
+                            console.error(error.code, error.message);
                         },
                         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                     )
                 } else {
-                    dispatch(setForecastWeatherAsync("Paris"));
+                    dispatch(setForecastWeatherAsync("Paris")); // take previous active location
                 }
+                setTimeout(() => {
+                    SplashScreen.hide();
+                }, 2000);
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -69,7 +57,7 @@ export default function StartInfo(): ReactElement {
             navigation.navigate("App");
             AsyncStorage.setItem('tutorialFinished', JSON.stringify(true));
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -100,8 +88,8 @@ export default function StartInfo(): ReactElement {
                     className='absolute bg-white' 
                     style={{ width: 600, height: 600, borderRadius: 600/2 }}
                 />
-                <Text className="w-56 text-center text-black text-3xl font-bold">{data[currentPage].title}</Text>
-                <Text className="w-60 pt-4 text-center text-gray-400 text-lg">{data[currentPage].text}</Text>
+                <Text className="w-64 text-center text-black text-3xl font-bold">{data[currentPage].title}</Text>
+                <Text className="w-64 pt-4 text-center text-gray-400 text-lg">{data[currentPage].text}</Text>
                 <TouchableOpacity 
                     onPress={moveToNext}
                     className='bg-slate-700 rounded-full p-2 mt-10'

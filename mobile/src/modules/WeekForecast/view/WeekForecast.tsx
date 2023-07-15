@@ -8,14 +8,14 @@ import { IForecastDay } from '../../../redux/types';
 import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function WeekForecast(): ReactElement {
-    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+    const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
         <View className="my-3 bg-gray-800 rounded-s-xl px-5 pt-10 pb-5 rounded-xl">
             <ForecastTableHeader/>
             <View>
                 {
-                    (forecastWeather.forecast.forecastday).map((day: IForecastDay, index: number): ReactElement => {
+                    (data.forecast.forecastday).map((day: IForecastDay, index: number): ReactElement => {
                         return (
                             <ForecastTableEl 
                                 index={index}

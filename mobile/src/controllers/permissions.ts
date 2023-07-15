@@ -10,7 +10,7 @@ export const permissionAction = async (): Promise<boolean> => {
         }
         return permission;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
     return false
 }

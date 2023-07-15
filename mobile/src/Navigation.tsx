@@ -44,7 +44,6 @@ export default function Navigation(): ReactElement {
     useEffect(() => {
         const subscription = AppState.addEventListener('change', nextAppState => {
             if(nextAppState === "background") {
-                console.log('end', locations)
                 saveInAsyncStorage("locations", JSON.stringify(locations));
             }
         });
@@ -64,7 +63,7 @@ export default function Navigation(): ReactElement {
                     AsyncStorage.removeItem("tutorialFinished");
                     AsyncStorage.removeItem("locations");
                 } catch (error) {
-                    console.log(error);
+                    console.error(error);
                 }
                 }}
             />

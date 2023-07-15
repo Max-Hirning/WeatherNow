@@ -6,7 +6,7 @@ import ForecastDetails from '../../../components/ForecastDetails';
 import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function TodayForecastDetails(): ReactElement {
-    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+    const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
         <View className=" bg-gray-800 rounded-s-xl p-5 rounded-xl my-3">
@@ -19,12 +19,12 @@ export default function TodayForecastDetails(): ReactElement {
                         marginTop: 50
                     }}
                     source={{
-                        uri: `https:${forecastWeather.current.condition.icon}`
+                        uri: `https:${data.current.condition.icon}`
                     }} 
                 />
                 <ForecastDetails/>
             </View>
-            <Text className="text-gray-400 text-base">Today - {forecastWeather.current.condition.text}. Winds from {forecastWeather.current.wind_dir} to {Math.round(forecastWeather.current.wind_kph)} kph. The overnight low will be {Math.round(forecastWeather.current.feelslike_c)}°C</Text>
+            <Text className="text-gray-400 text-base">Today - {data.current.condition.text}. Winds from {data.current.wind_dir} to {Math.round(data.current.wind_kph)} kph. The overnight low will be {Math.round(data.current.feelslike_c)}°C</Text>
         </View>
     );
 }

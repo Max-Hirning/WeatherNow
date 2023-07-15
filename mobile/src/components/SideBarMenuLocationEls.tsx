@@ -9,12 +9,14 @@ import { ILocations, addLocation } from "../redux/reducers/locations";
 export default function SideBarMenuLocationEls(): ReactElement {
     const dispatch: AppDispatch = useDispatch();
     const locations: ILocations[] = useSelector((state: RootState) => state.locations);
-    const { location }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
-    
+    const { data, loading, error }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+
     useEffect(() => {
-        const foundedIndex = locations.findIndex((el: ILocations) => el.data.name === location.name);
-        dispatch(addLocation({index: foundedIndex, data: location}));
-    }, [location]);
+        if(error !== true && loading !== true) {
+            const foundedIndex = locations.findIndex((el: ILocations) => el.data.name === data.location.name);
+            dispatch(addLocation({index: foundedIndex, data: data.location}));
+        }
+    }, [data.location]);
 
     return (
         <View className="mt-2">

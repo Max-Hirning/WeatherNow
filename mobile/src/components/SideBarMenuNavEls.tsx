@@ -9,10 +9,9 @@ import SideBarMenuNavEl from '../UI/SideBarMenuNavEl';
 export default function SideBarMenuNavEls(): ReactElement {
     const shareApp = async (): Promise<void> => {
         try {
-            const res = await Share.open({ url: "link" })
-            console.log(res);
+            await Share.open({ url: "link" })
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -23,7 +22,7 @@ export default function SideBarMenuNavEls(): ReactElement {
     return (
         <View className="mb-4">
             <Text className="text-gray-400 text-3xl">Tools</Text>
-            <SideBarMenuNavEl 
+            {/* <SideBarMenuNavEl 
                 text="Send feedback" 
                 actionFunc={shareApp}
             >
@@ -32,7 +31,7 @@ export default function SideBarMenuNavEls(): ReactElement {
                     height={25}
                     color="white"
                 />
-            </SideBarMenuNavEl>
+            </SideBarMenuNavEl> */}
             <SideBarMenuNavEl 
                 text="Rate this app" 
                 actionFunc={openAppInGooglePlay}

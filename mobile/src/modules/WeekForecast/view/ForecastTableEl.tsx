@@ -6,7 +6,7 @@ import React, { ReactElement, useState } from 'react';
 import ChevronIcon from "../../../assets/icons/chevron";
 import { IHourlyForecast } from '../../../redux/types';
 import HourlyForecastSlider from '../../../components/HourlyForecastSlider';
-import { View, Text, Image, TouchableOpacity, Animated, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Animated } from 'react-native';
 
 interface IProps {
     min: number;
@@ -19,7 +19,7 @@ interface IProps {
 export default function ForecastTableEl({ date, min, max, index, weatherIcon }: IProps): ReactElement {
     const spinValue = React.useState(new Animated.Value(0))[0];
     const [showAdditionalInfo, setShowAdditionalInfo] = useState<boolean>(false);
-    const hourlyForecast: IHourlyForecast[] = useSelector((state: RootState) => state.forecastWeather.forecast.forecastday[index].hour);
+    const hourlyForecast: IHourlyForecast[] = useSelector((state: RootState) => state.forecastWeather.data.forecast.forecastday[index].hour);
 
     const openCloseForecastInfo = () => {
         Animated.spring(spinValue, {

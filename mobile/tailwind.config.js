@@ -7,6 +7,7 @@ module.exports = {
     "./src/UI/*.{js,jsx,ts,tsx}",
     "./src/pages/*.{js,jsx,ts,tsx}",
     "./src/components/*.{js,jsx,ts,tsx}",
+    "./src/modules/Loader/view/*.{js,jsx,ts,tsx}",
     "./src/modules/StartInfo/view/*.{js,jsx,ts,tsx}",
     "./src/modules/SideBarMenu/view/*.{js,jsx,ts,tsx}",
     "./src/modules/WeekForecast/view/*.{js,jsx,ts,tsx}",

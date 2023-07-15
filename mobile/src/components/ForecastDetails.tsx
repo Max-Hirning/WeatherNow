@@ -6,7 +6,7 @@ import ForecastDetail from '../UI/ForecastDetail';
 import { IForecastWeather } from '../redux/reducers/forecastWeather';
 
 export default function ForecastDetails(): ReactElement {
-    const forecastWeather: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+    const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     const uvIndexLabel = (uv: number): string => {
         switch(uv) {
@@ -33,23 +33,23 @@ export default function ForecastDetails(): ReactElement {
         <View className="w-40 my-5 ">
             <ForecastDetail 
                 title="Feels like" 
-                value={`${Math.round(forecastWeather.current.temp_c)}°`}
+                value={`${Math.round(data.current.temp_c)}°`}
             />
             <ForecastDetail 
                 title="Humidity" 
-                value={`${Math.round(forecastWeather.current.humidity)}%`}
+                value={`${Math.round(data.current.humidity)}%`}
             />
             <ForecastDetail 
                 title="Visibility" 
-                value={`${Math.round(forecastWeather.current.vis_km)} km`}
+                value={`${Math.round(data.current.vis_km)} km`}
             />
             <ForecastDetail 
                 title="UV Index" 
-                value={`${uvIndexLabel(forecastWeather.current.uv)} ${Math.round(forecastWeather.current.uv)}`}
+                value={`${uvIndexLabel(data.current.uv)} ${Math.round(data.current.uv)}`}
             />
             <ForecastDetail 
                 title="Wind gust" 
-                value={`${Math.round(forecastWeather.current.gust_kph)} kph`}
+                value={`${Math.round(data.current.gust_kph)} kph`}
             />
         </View>
     );

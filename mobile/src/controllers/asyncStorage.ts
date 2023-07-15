@@ -4,6 +4,6 @@ export const saveInAsyncStorage = async (key: string, value: string): Promise<vo
     try {
         await AsyncStorage.setItem(key, value);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }

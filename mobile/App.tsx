@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
+import { StatusBar } from 'react-native';
 import { store } from "./src/redux/store";
 import Navigation from "./src/Navigation";
-import { StatusBar } from 'react-native';
 import React, { ReactElement } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
