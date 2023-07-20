@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import React, { ReactElement } from "react";
 import { RootState } from "../../../redux/store";
-import { IForecastWeather } from "../../../redux/reducers/forecastWeather";
-import TodayForecastInfo from "../../../components/TodayForecastInfo";
 import Divider from "../../../components/Divider";
+import TodayForecastInfo from "../../../components/TodayForecastInfo";
+import { IForecastWeather } from "../../../redux/reducers/forecastWeather";
 
 export default function Front(): ReactElement {
 	const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
