@@ -13,3 +13,40 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+
+
+
+.card {
+  top: 27%;
+  width: 90%;
+  left: 22rem;
+  height: 340px;
+  max-width: 340px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.card:hover .front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.card:hover .back {
+  transform: perspective(600px) rotateY(0);
+}
+
+.front, .back {
+  overflow: hidden;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.75s ease;
+  -webkit-backface-visibility: hidden;
+}
+
+.front {
+  transform: perspective(600px) rotateY(0);
+}
+
+.back {
+  transform: perspective(600px) rotateY(180deg);
+}
