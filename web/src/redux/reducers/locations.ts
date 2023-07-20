@@ -12,7 +12,34 @@ export interface IAddLocationPayload {
     data: ILocation;
 }
 
-const initialState: ILocations[] = [];
+const initialState: ILocations[] = [
+	{
+		isActive: true,
+		data: {
+			"name": "Kiev",
+			"region": "Kyyivs'ka Oblast'",
+			"country": "Ukraine",
+			"lat": 50.43,
+			"lon": 30.52,
+			"tz_id": "Europe/Kiev",
+			"localtime_epoch": 1689157243,
+			"localtime": "2023-07-12 13:20"
+		}
+	},
+	{
+		isActive: false,
+		data: {
+			"name": "Kiev",
+			"region": "Kyyivs'ka Oblast'",
+			"country": "Ukraine",
+			"lat": 50.43,
+			"lon": 30.52,
+			"tz_id": "Europe/Kiev",
+			"localtime_epoch": 1689157243,
+			"localtime": "2023-07-12 13:20"
+		}
+	}
+];
 
 export const locationsSlice = createSlice({
 	name: "locationsSlice",
