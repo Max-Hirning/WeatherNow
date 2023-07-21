@@ -4,7 +4,8 @@
 
 body {
   margin: 0;
-  background-color: rgb(30 41 59);
+  overflow-x: hidden;
+  /* background-color: rgb(30 41 59); */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -12,41 +13,4 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-
-
-
-.card {
-  top: 12rem;
-  width: 90%;
-  left: 22rem;
-  height: 340px;
-  max-width: 340px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-.card:hover .front {
-  transform: perspective(600px) rotateY(-180deg);
-}
-
-.card:hover .back {
-  transform: perspective(600px) rotateY(0);
-}
-
-.front, .back {
-  overflow: hidden;
-  position: absolute;
-  backface-visibility: hidden;
-  transition: transform 0.75s ease;
-  -webkit-backface-visibility: hidden;
-}
-
-.front {
-  transform: perspective(600px) rotateY(0);
-}
-
-.back {
-  transform: perspective(600px) rotateY(180deg);
 }

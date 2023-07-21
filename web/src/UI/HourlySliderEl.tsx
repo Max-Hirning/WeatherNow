@@ -17,7 +17,7 @@ export default function HourlySliderEl({ title, value, isToday, weatherIcon }: I
 	};
 
 	return (
-		<div className={`flex mx-3 rounded-full w-16 py-4 flex-col items-center justify-between ${getNowTimeStyle()}`}>
+		<div className={`inline-flex mx-3 rounded-full w-16 py-4 flex-col items-center justify-between ${getNowTimeStyle()}`}>
 			<p className="text-white text-base">{title}</p>
 			<img
 				src={`https:${weatherIcon}`}

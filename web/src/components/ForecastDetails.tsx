@@ -4,7 +4,7 @@ import React, { ReactElement } from "react";
 import TodayForecastDetailsEl from "../UI/TodayForecastDetailsEl";
 import { IForecastWeather } from "../redux/reducers/forecastWeather";
 
-export default function TodayForecastDetails(): ReactElement {
+export default function ForecastDetails(): ReactElement {
 	const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
 	const uvIndexLabel = (uv: number): string => {

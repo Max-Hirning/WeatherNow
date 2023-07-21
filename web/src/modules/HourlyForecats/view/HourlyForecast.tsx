@@ -17,7 +17,7 @@ export default function HourlyForecast(): ReactElement {
 	};
 
 	return (
-		<div className="flex flex-row">
+		<div className="w-full py-2.5 overflow-x-auto whitespace-nowrap">
 			{
 				data.map((el: IHourlyForecast, index: number): ReactElement => {
 					return (

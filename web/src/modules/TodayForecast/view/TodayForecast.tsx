@@ -5,11 +5,11 @@ import Divider from "../../../components/Divider";
 import TodayForecastInfo from "../../../components/TodayForecastInfo";
 import { IForecastWeather } from "../../../redux/reducers/forecastWeather";
 
-export default function Front(): ReactElement {
+export default function TodayForecast(): ReactElement {
 	const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
 	return (
-		<div className="front flex w-full h-full flex-col p-5 bg-gray-800 rounded-xl">
+		<div className="w-80 h-96 flex flex-col p-5 bg-gray-800 rounded-xl m-5">
 			<div className="flex flex-col">
 				<div className="flex-row items-center justify-between flex">
 					<img
