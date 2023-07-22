@@ -1,6 +1,7 @@
 import Share from 'react-native-share';
 import React, { ReactElement } from 'react';
 import StarIcon from "../assets/icons/star";
+import CloudIcon from "../assets/icons/cloud";
 import ShareIcon from "../assets/icons/share";
 import MessageIcon from "../assets/icons/message";
 import { Text, View, Linking  } from "react-native";
@@ -9,6 +10,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SideBarMenuNavEls(): ReactElement {
     const navigation = useNavigation<any>();
+
+    const moveToWeather = (): void => {
+        navigation.navigate("Forecast");
+    }
 
     const moveToFeedBack = (): void => {
         navigation.navigate("FeedBack");
@@ -30,12 +35,22 @@ export default function SideBarMenuNavEls(): ReactElement {
         <View className="mb-4">
             <Text className="text-gray-400 text-3xl">Tools</Text>
             <SideBarMenuNavEl 
+                text="Weather" 
+                actionFunc={moveToWeather}
+            >
+                <CloudIcon
+                    width={30}
+                    height={30}
+                    color="white"
+                />
+            </SideBarMenuNavEl>
+            <SideBarMenuNavEl 
                 text="Send feedback" 
                 actionFunc={moveToFeedBack}
             >
                 <MessageIcon
-                    width={25}
-                    height={25}
+                    width={30}
+                    height={30}
                     color="white"
                 />
             </SideBarMenuNavEl>

@@ -57,7 +57,7 @@ export default function Navigation(): ReactElement {
 
     return (
         <>
-            <Button
+            {/* <Button
                 title="Press"
                 onPress={async () => {
                 try {
@@ -68,7 +68,7 @@ export default function Navigation(): ReactElement {
                     console.error(error);
                 }
                 }}
-            />
+            /> */}
             <Stack.Navigator 
                 screenOptions={{
                     headerShown: false
