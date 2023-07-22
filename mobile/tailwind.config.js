@@ -10,6 +10,7 @@ module.exports = {
     "./src/modules/Loader/view/*.{js,jsx,ts,tsx}",
     "./src/modules/StartInfo/view/*.{js,jsx,ts,tsx}",
     "./src/modules/SideBarMenu/view/*.{js,jsx,ts,tsx}",
+    "./src/modules/FeedBackForm/view/*.{js,jsx,ts,tsx}",
     "./src/modules/WeekForecast/view/*.{js,jsx,ts,tsx}",
     "./src/modules/TodayForecast/view/*.{js,jsx,ts,tsx}",
     "./src/modules/TodayForecastSlider/view/*.{js,jsx,ts,tsx}",

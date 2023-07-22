@@ -1,15 +1,15 @@
-import { AppState, Button } from 'react-native';
+import FeedBack from './pages/FeedBack';
 import Forecast from "./pages/Forecast";
+import { AppState, Button } from 'react-native';
+import { reset } from "./redux/reducers/locations";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { reset } from "./redux/reducers/locations";
-
 import React, { ReactElement, useEffect } from 'react';
 import { ILocations } from "./redux/reducers/locations";
 import StartInfo from "./modules/StartInfo/view/StartInfo";
 import { saveInAsyncStorage } from "./controllers/asyncStorage";
 import SideBarMenu from "./modules/SideBarMenu/view/SideBarMenu";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentComponentProps, createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -28,10 +28,12 @@ function App(): ReactElement {
                 },
                 swipeEnabled: false,
                 headerTintColor: 'white',
+                headerTitle: "Send feedback",
             }}
             initialRouteName="Forecast"
             drawerContent={(props: DrawerContentComponentProps): ReactElement => SideBarMenu(props)}
         >
+            <Drawer.Screen name="FeedBack" component={FeedBack} />
             <Drawer.Screen name="Forecast" component={Forecast} />
         </Drawer.Navigator>
     );
