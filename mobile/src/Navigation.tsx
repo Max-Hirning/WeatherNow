@@ -9,7 +9,7 @@ import { ILocations } from "./redux/reducers/locations";
 import StartInfo from "./modules/StartInfo/view/StartInfo";
 import { saveInAsyncStorage } from "./controllers/asyncStorage";
 import SideBarMenu from "./modules/SideBarMenu/view/SideBarMenu";
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentComponentProps, createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -40,7 +40,7 @@ function App(): ReactElement {
 
 export default function Navigation(): ReactElement {
     const dispatch: AppDispatch = useDispatch();
-    const locations: ILocations[] = useSelector((state: RootState) => state.locations);
+    const locations: ILocations = useSelector((state: RootState) => state.locations);
 
     useEffect(() => {
         const subscription = AppState.addEventListener('change', nextAppState => {
@@ -56,7 +56,7 @@ export default function Navigation(): ReactElement {
 
     return (
         <>
-            {/* <Button
+            <Button
                 title="Press"
                 onPress={async () => {
                 try {
@@ -67,7 +67,7 @@ export default function Navigation(): ReactElement {
                     console.error(error);
                 }
                 }}
-            /> */}
+            />
             <Stack.Navigator 
                 screenOptions={{
                     headerShown: false

@@ -27,26 +27,36 @@ export default function StartInfo(): ReactElement {
             dispatch(setLocationsAsync());
             if(value) {
                 if(JSON.parse(value)) moveToApp();
-
-                const permission = await permissionAction();
-
-                if(permission) {
-                    Geolocation.getCurrentPosition(
-                        (position) => {
-                            dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
-                        },
-                        (error) => {
-                            console.error(error.code, error.message);
-                        },
-                        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-                    )
-                } else {
-                    dispatch(setForecastWeatherAsync("Paris")); // take previous active location
-                }
-                setTimeout(() => {
-                    SplashScreen.hide();
-                }, 2000);
+                getLocationAndForecast(); // take previous active location
+            } else {
+                getLocationAndForecast();
             }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getLocationAndForecast = async (): Promise<void> => {
+        try {
+            const permission = await permissionAction();
+
+            if(permission) {
+                Geolocation.getCurrentPosition(
+                    (position) => {
+                        dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
+                    },
+                    (error) => {
+                        console.error(error.code, error.message);
+                    },
+                    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+                )
+            } else {
+                dispatch(setForecastWeatherAsync("Paris"));
+            }
+
+            setTimeout(() => {
+                SplashScreen.hide();
+            }, 2000);
         } catch (error) {
             console.error(error);
         }

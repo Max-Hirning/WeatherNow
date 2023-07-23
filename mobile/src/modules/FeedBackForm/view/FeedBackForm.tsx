@@ -1,29 +1,36 @@
+import { themes } from '../models';
+import { IFeedBack } from '../types';
 import FormEl from '../../../components/FormEl';
 import SelectDropdown from 'react-native-select-dropdown';
 import React, { ReactElement, useMemo, useState } from 'react';
+import { feedBackAPI } from '../../../controllers/api/feedBack';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-const data = ["Appearance and design", "Suggestions for improvement", "Feedback on widgets work"];
-
 export default function FeedBackForm(): ReactElement {
-    const [theme, setTheme] = useState<string>("");
-    const [details, setDetails] = useState<string>("");
+    const [feedBack ,setFeedBack] = useState<IFeedBack>({
+        theme: "",
+        details: "",
+    });
     const [disabledButton, setDisabledButton] = useState<boolean>(true);
 
     useMemo(() => {
-        setDisabledButton(!Boolean(theme.length && details.length));
-    }, [theme, details]);
+        setDisabledButton(!Boolean(feedBack.theme.length && feedBack.details.length));
+    }, [feedBack]);
 
-    const sendFeedBack = (): void => {
-        console.log({theme, details})
+    const sendFeedBack = async (): Promise<void> => {
+        const response = await feedBackAPI.post(feedBack);
+        console.log(response);
+        setFeedBack({
+            theme: "",
+            details: "",
+        })
     }
 
     return (
         <View>
             <FormEl title='Theme of your feedback'>
             <SelectDropdown
-                data={data}
-                onSelect={setTheme}
+                data={themes}
                 buttonStyle={{
                     width: "100%",
                     borderWidth: 1,
@@ -35,6 +42,9 @@ export default function FeedBackForm(): ReactElement {
                     fontSize: 18,
                     lineHeight: 28,
                     color: 'rgb(156 163 175)',
+                }}
+                onSelect={(value: string) => {
+                    setFeedBack((state: IFeedBack) => ({...state, theme: value}));
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                     // text represented after item is selected
@@ -50,9 +60,11 @@ export default function FeedBackForm(): ReactElement {
             </FormEl>
             <FormEl title='Details'>
                 <TextInput 
-                    value={details}
                     multiline={true}
-                    onChangeText={setDetails}
+                    value={feedBack.details}
+                    onChangeText={(value: string) => {
+                        setFeedBack((state: IFeedBack) => ({...state, details: value}));
+                    }}
                     className='px-4 text-gray-400 text-base rounded-xl border border-gray-400'
                 />
             </FormEl>
