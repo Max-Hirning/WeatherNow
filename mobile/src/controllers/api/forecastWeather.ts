@@ -1,4 +1,5 @@
 import axios from "axios";
+import { HOST, KEY, URL } from "@env";
 
 class ForecastWeatherAPI {
     constructor(protected url: string, private key: string, private host: string) {}
@@ -25,4 +26,4 @@ class ForecastWeatherAPI {
     }
 }
 
-export const forecastWeatherAPI = new ForecastWeatherAPI('https://weatherapi-com.p.rapidapi.com/forecast.json', 'd346c6f5c9mshf284681ba89d374p19e1d9jsn475b80c7c799', 'weatherapi-com.p.rapidapi.com')
+export const forecastWeatherAPI = new ForecastWeatherAPI(URL, KEY, HOST);

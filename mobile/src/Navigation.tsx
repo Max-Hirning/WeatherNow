@@ -9,7 +9,7 @@ import { ILocations } from "./redux/reducers/locations";
 import StartInfo from "./modules/StartInfo/view/StartInfo";
 import { saveInAsyncStorage } from "./controllers/asyncStorage";
 import SideBarMenu from "./modules/SideBarMenu/view/SideBarMenu";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentComponentProps, createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -28,13 +28,12 @@ function App(): ReactElement {
                 },
                 swipeEnabled: false,
                 headerTintColor: 'white',
-                headerTitle: "Send feedback",
             }}
             initialRouteName="Forecast"
             drawerContent={(props: DrawerContentComponentProps): ReactElement => SideBarMenu(props)}
         >
-            <Drawer.Screen name="FeedBack" component={FeedBack} />
             <Drawer.Screen name="Forecast" component={Forecast} />
+            <Drawer.Screen name="FeedBack" options={{ title: "Send feedback" }} component={FeedBack} />
         </Drawer.Navigator>
     );
 }
