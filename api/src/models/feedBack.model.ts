@@ -6,4 +6,4 @@ const feedBack = new Schema({
 	details: { type: String, required: true },
 });
 
-export const FeedBackModel = model<IFeedBack>("WeatherNow/FeedBack", feedBack);
+export const FeedBackModel = model<IFeedBack>("FeedBacks", feedBack);
