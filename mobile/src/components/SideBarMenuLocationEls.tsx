@@ -16,12 +16,8 @@ export default function SideBarMenuLocationEls(): ReactElement {
         if(error !== true && loading !== true) {
             const currentLocation = `${data.location.name}_${data.location.region}_${data.location.country}_${data.location.tz_id}`;
             const foundedLocation = locations.data.find((el: ILocation) => currentLocation === `${el.name}_${el.region}_${el.country}_${el.tz_id}`)
-            console.log('foundedLocation', foundedLocation)
-            if(!foundedLocation) {
-                dispatch(addLocation({active: currentLocation, data: data.location}));
-            }
-            // const foundedIndex = locations.findIndex((el: ILocations) => el.data.name === data.location.name);
-            // dispatch(addLocation({index: foundedIndex, data: data.location}));
+
+            if(!foundedLocation) dispatch(addLocation(data.location));
         }
     }, [data.location]);
 

@@ -16,7 +16,7 @@ export default function SideBarMenuLocationEl({ data, index, isActive }: IProps)
     const dispatch: AppDispatch = useDispatch();
 
     const selectLocation = (): void => {
-        dispatch(choseLocation(index));
+        dispatch(choseLocation(data));
     }
 
     const getActiveLocationStyle = (): string => {

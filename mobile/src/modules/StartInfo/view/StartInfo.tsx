@@ -9,8 +9,9 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setLocationsAsync } from "../../../redux/reducers/locations";
+import locations, { choseLocation, setLocationsAsync } from "../../../redux/reducers/locations";
 import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
+import { ILocation } from "../../../redux/types";
 
 export default function StartInfo(): ReactElement {
     const navigation: any = useNavigation();
@@ -23,14 +24,28 @@ export default function StartInfo(): ReactElement {
 
     const prepareApp = async (): Promise<void> => {
         try {
-            const value = await AsyncStorage.getItem('tutorialFinished');
+            const tutorialFinishedRes = await AsyncStorage.getItem('tutorialFinished');
             dispatch(setLocationsAsync());
-            if(value) {
-                if(JSON.parse(value)) moveToApp();
-                getLocationAndForecast(); // take previous active location
+            if(tutorialFinishedRes) {
+                const locationsRes = await AsyncStorage.getItem("locations");
+                if(locationsRes) {
+                    const { active, data } = JSON.parse(locationsRes);
+                    const activeLocation = data.find((el: ILocation) => active === `${el.name}_${el.region}_${el.country}_${el.tz_id}`);
+                    if(activeLocation) {
+                        dispatch(setForecastWeatherAsync(`${activeLocation.lat},${activeLocation.lon}`));
+                    } else {
+                        dispatch(setForecastWeatherAsync(`${data[0].lat},${data[0].lon}`));
+                        dispatch(choseLocation(data[0]));
+                    }
+                }
+
+                if(JSON.parse(tutorialFinishedRes)) moveToApp();
             } else {
                 getLocationAndForecast();
             }
+            setTimeout(() => {
+                SplashScreen.hide();
+            }, 2000);
         } catch (error) {
             console.error(error);
         }
@@ -53,10 +68,6 @@ export default function StartInfo(): ReactElement {
             } else {
                 dispatch(setForecastWeatherAsync("Paris"));
             }
-
-            setTimeout(() => {
-                SplashScreen.hide();
-            }, 2000);
         } catch (error) {
             console.error(error);
         }

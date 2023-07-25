@@ -25,13 +25,13 @@ export const locationsSlice = createSlice({
         reset: (): ILocations => {
             return initialState;
         },
-        choseLocation: (state: ILocations, { payload }: PayloadAction<string>): ILocations => {
-            state.active = payload;
+        addLocation: (state: ILocations, { payload }: PayloadAction<ILocation>): ILocations => {
+            state.active = `${payload.name}_${payload.region}_${payload.country}_${payload.tz_id}`;
+            state.data.push(payload);
             return state;
         },
-        addLocation: (state: ILocations, { payload }: PayloadAction<IAddLocationPayload>): ILocations => {
-            state.active = payload.active;
-            state.data.push(payload.data);
+        choseLocation: (state: ILocations, { payload }: PayloadAction<ILocation>): ILocations => {
+            state.active = `${payload.name}_${payload.region}_${payload.country}_${payload.tz_id}`;
             return state;
         },
     },
