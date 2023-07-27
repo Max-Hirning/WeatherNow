@@ -42,7 +42,6 @@ export default function SideBarMenuLocationEls(): ReactElement {
                         <SideBarMenuLocationEl
                             key={index}
                             data={data}
-                            index={index}
                             isActive={locations.active === `${data.name}_${data.region}_${data.country}_${data.tz_id}`}
                         />
                     );

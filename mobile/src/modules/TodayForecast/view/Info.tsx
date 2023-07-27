@@ -7,13 +7,26 @@ import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function Info(): ReactElement {
     const navigation = useNavigation();
-    const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
-
+    const { data, loading, error }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
+    console.log(loading, error);
     useEffect(() => {
         navigation.setOptions({
-            title: `${data.location.name}`
+            title: getPageHeader()
         })
-    }, [data]);
+    }, [data, loading, error]);
+
+    const getPageHeader = (): string => {
+        // console.log(loading, error)
+        if(loading) {
+            return "Loading"
+        }
+
+        if(error) {
+            return "Error"
+        }
+
+        return `${data.location.name}`;
+    }
 
     return (
         <View className=" flex-col">

@@ -1,9 +1,16 @@
 import { APIMAPKEY } from "@env";
 import { View } from "react-native";
+import { useDispatch } from "react-redux";
 import React, { ReactElement } from 'react';
+import { AppDispatch } from "../redux/store";
+import { useNavigation } from "@react-navigation/core";
+import { setForecastWeatherAsync } from "../redux/reducers/forecastWeather";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 export default function FindLocation(): ReactElement {
+    const navigation = useNavigation<any>();
+    const dispatch: AppDispatch = useDispatch();
+
     return (
         <View className="bg-slate-700 px-4 py-4 flex-1">
             <GooglePlacesAutocomplete
@@ -47,7 +54,9 @@ export default function FindLocation(): ReactElement {
                 placeholder='Search new location'
                 onPress={(_, details = null) => {
                     if(details) {
-                        console.log(details.geometry.location);
+                        const { lat, lng } = details.geometry.location;
+                        dispatch(setForecastWeatherAsync(`${lat},${lng}`));
+                        navigation.navigate("Forecast");
                     }
                 }}
             />

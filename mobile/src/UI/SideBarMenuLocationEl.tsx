@@ -5,18 +5,19 @@ import { AppDispatch } from '../redux/store';
 import LocationIcon from "../assets/icons/location";
 import { Text, TouchableOpacity, View } from "react-native";
 import { choseLocation } from '../redux/reducers/locations';
+import { setForecastWeatherAsync } from '../redux/reducers/forecastWeather';
 
 interface IProps {
-    index: number;
     data: ILocation;
     isActive: boolean;
 }
 
-export default function SideBarMenuLocationEl({ data, index, isActive }: IProps): ReactElement {
+export default function SideBarMenuLocationEl({ data, isActive }: IProps): ReactElement {
     const dispatch: AppDispatch = useDispatch();
 
     const selectLocation = (): void => {
         dispatch(choseLocation(data));
+        dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
     }
 
     const getActiveLocationStyle = (): string => {
