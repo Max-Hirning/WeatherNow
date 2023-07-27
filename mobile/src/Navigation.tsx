@@ -1,5 +1,6 @@
 import FeedBack from './pages/FeedBack';
 import Forecast from "./pages/Forecast";
+import FindLocation from './pages/FindLocation';
 import { AppState, Button } from 'react-native';
 import { reset } from "./redux/reducers/locations";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +35,7 @@ function App(): ReactElement {
         >
             <Drawer.Screen name="Forecast" component={Forecast} />
             <Drawer.Screen name="FeedBack" options={{ title: "Send feedback" }} component={FeedBack} />
+            <Drawer.Screen name="FindLocation" options={{ title: "Chose new Location" }} component={FindLocation} />
         </Drawer.Navigator>
     );
 }
