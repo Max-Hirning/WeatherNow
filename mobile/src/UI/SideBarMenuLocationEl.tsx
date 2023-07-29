@@ -18,10 +18,12 @@ export default function SideBarMenuLocationEl({ data, isActive }: IProps): React
     const dispatch: AppDispatch = useDispatch();
     const navigation = useNavigation<ScreenNavigationProp>()
 
-    const selectLocation = (): void => {
-        dispatch(choseLocation(data));
-        dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
+    const selectLocation = async (): Promise<void> => {
         navigation.navigate("Forecast");
+        const res = await dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
+        if (res.type.split("/").reverse()[0] === "fulfilled") {
+            dispatch(choseLocation(data));
+        }
     }
 
     const getActiveLocationStyle = (): string => {
