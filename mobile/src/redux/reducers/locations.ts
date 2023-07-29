@@ -37,6 +37,11 @@ export const locationsSlice = createSlice({
             state.active = `${payload.name}_${payload.region}_${payload.country}_${payload.tz_id}`;
             return state;
         },
+        deleteLocation: (state: ILocations, { payload }: PayloadAction<ILocation>): ILocations => {
+            const deletedLocation = `${payload.name}_${payload.region}_${payload.country}_${payload.tz_id}`;
+            state.data = state.data.filter((el) => `${el.name}_${el.region}_${el.country}_${el.tz_id}` !== deletedLocation);
+            return state;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(setLocationsAsync.fulfilled, (_: ILocations, { payload }: PayloadAction<ILocations>): ILocations => {
@@ -57,6 +62,6 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
     return initialState;
 });
 
-export const { reset, choseLocation, addLocation } = locationsSlice.actions
+export const { reset, choseLocation, addLocation, deleteLocation } = locationsSlice.actions
 
 export default locationsSlice.reducer;

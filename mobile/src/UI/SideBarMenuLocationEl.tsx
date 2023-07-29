@@ -2,12 +2,16 @@ import { useDispatch } from 'react-redux';
 import { ILocation } from '../redux/types';
 import React, { ReactElement } from 'react';
 import { AppDispatch } from '../redux/store';
+import DeleteIcon from "../assets/icons/delete";
 import LocationIcon from "../assets/icons/location";
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from '../types/Navigation';
+import { flashMessage } from '../controllers/flashMessage';
+import { MessagesTypes } from '../constants/messagesTypes';
 import { Text, TouchableOpacity, View } from "react-native";
-import { choseLocation } from '../redux/reducers/locations';
+import { choseLocation, deleteLocation } from '../redux/reducers/locations';
 import { setForecastWeatherAsync } from '../redux/reducers/forecastWeather';
+import { FlashMessageBackgroundColors, FlashMessageColors } from '../constants/themes';
 
 interface IProps {
     data: ILocation;
@@ -18,11 +22,20 @@ export default function SideBarMenuLocationEl({ data, isActive }: IProps): React
     const dispatch: AppDispatch = useDispatch();
     const navigation = useNavigation<ScreenNavigationProp>()
 
-    const selectLocation = async (): Promise<void> => {
-        navigation.navigate("Forecast");
-        const res = await dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
-        if (res.type.split("/").reverse()[0] === "fulfilled") {
-            dispatch(choseLocation(data));
+    const removeLocation = (): void => {
+        if (isActive) {
+            flashMessage("You can't remove active location", "", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+        } else {
+            dispatch(deleteLocation(data));
+        }
+    }
+
+    const formatCountryName = (): string => {
+        switch (data.country) {
+            case "United States of America":
+                return "USA";
+            default:
+                return data.country;
         }
     }
 
@@ -34,30 +47,36 @@ export default function SideBarMenuLocationEl({ data, isActive }: IProps): React
         }
     }
 
-    const formatCountryName = (): string => {
-        switch(data.country) {
-            case "United States of America":
-                return "USA";
-            default:
-                return data.country;
-        }
+    const selectLocation = async (): Promise<void> => {
+        navigation.navigate("Forecast");
+        const res = await dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
+        if (res.type.split("/").reverse()[0] === "fulfilled") dispatch(choseLocation(data));
     }
 
     return (
-        <TouchableOpacity 
-            disabled={isActive}
-            onPress={selectLocation}
-            className={`flex-row items-center my-2 rounded-xl py-1 px-2.5 ${getActiveLocationStyle()}`}
-        >
-            <LocationIcon
-                width={35}
-                height={35}
-                color="white"
-            />
-            <View>
-                <Text className="text-white text-base ml-3">{data.name}</Text>
-                <Text className="text-white text-base ml-3">{formatCountryName()}</Text>
-            </View>
-        </TouchableOpacity>
+        <View className="flex-row items-center justify-between">
+            <TouchableOpacity
+                disabled={isActive}
+                onPress={selectLocation}
+                className={`w-4/5 flex-row items-center my-2 rounded-xl py-1 px-2.5 ${getActiveLocationStyle()}`}
+            >
+                <LocationIcon
+                    width={35}
+                    height={35}
+                    color="white"
+                />
+                <View>
+                    <Text className="text-white text-base ml-3">{data.name}</Text>
+                    <Text className="text-white text-base ml-3">{formatCountryName()}</Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={removeLocation}>
+                <DeleteIcon
+                    width={35}
+                    height={35}
+                    color="white"
+                />
+            </TouchableOpacity>
+        </View>
     );
 }
