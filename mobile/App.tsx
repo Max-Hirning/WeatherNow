@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { store } from "./src/redux/store";
 import Navigation from "./src/Navigation";
 import React, { ReactElement } from 'react';
+import FlashMessage from "react-native-flash-message";
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App(): ReactElement {
@@ -14,6 +15,7 @@ export default function App(): ReactElement {
           animated={true}
           backgroundColor="rgb(30 41 59)"
         />
+        <FlashMessage position="top" />
       </Provider>
     </NavigationContainer>
   );

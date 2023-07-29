@@ -4,12 +4,16 @@ import { useDispatch } from "react-redux";
 import React, { ReactElement } from 'react';
 import { AppDispatch } from "../redux/store";
 import { useNavigation } from "@react-navigation/core";
+import { ScreenNavigationProp } from "../types/Navigation";
+import { MessagesTypes } from "../constants/messagesTypes";
+import { flashMessage } from "../controllers/flashMessage";
 import { setForecastWeatherAsync } from "../redux/reducers/forecastWeather";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { FlashMessageBackgroundColors, FlashMessageColors } from "../constants/themes";
 
 export default function FindLocation(): ReactElement {
-    const navigation = useNavigation<any>();
     const dispatch: AppDispatch = useDispatch();
+    const navigation = useNavigation<ScreenNavigationProp>();
 
     return (
         <View className="bg-slate-700 px-4 py-4 flex-1">
@@ -57,6 +61,8 @@ export default function FindLocation(): ReactElement {
                         const { lat, lng } = details.geometry.location;
                         dispatch(setForecastWeatherAsync(`${lat},${lng}`));
                         navigation.navigate("Forecast");
+                    } else {
+                        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
                     }
                 }}
             />

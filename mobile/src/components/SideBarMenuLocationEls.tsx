@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { ReactElement, useEffect } from 'react';
 import { AppDispatch, RootState } from "../redux/store";
 import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationProp } from "../types/Navigation";
 import { View, Text, TouchableOpacity } from "react-native";
 import SideBarMenuLocationEl from '../UI/SideBarMenuLocationEl';
 import { IForecastWeather } from "../redux/reducers/forecastWeather";
 import { ILocations, addLocation } from "../redux/reducers/locations";
 
 export default function SideBarMenuLocationEls(): ReactElement {
-    const navigation = useNavigation<any>();
     const dispatch: AppDispatch = useDispatch();
+    const navigation = useNavigation<ScreenNavigationProp>();
     const locations: ILocations = useSelector((state: RootState) => state.locations);
     const { data, loading, error }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 

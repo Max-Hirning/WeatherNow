@@ -1,7 +1,10 @@
 import { ILocation } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { MessagesTypes } from '../../constants/messagesTypes';
+import { flashMessage } from '../../controllers/flashMessage';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FlashMessageBackgroundColors, FlashMessageColors } from '../../constants/themes';
 
 export interface ILocations {
     active: string;
@@ -48,8 +51,8 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
         if(result) {
             return JSON.parse(result);
         }
-    } catch (error) {
-        console.error(error);
+    } catch {
+        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
     }
     return initialState;
 });

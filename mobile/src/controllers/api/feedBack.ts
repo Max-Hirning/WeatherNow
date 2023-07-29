@@ -1,6 +1,9 @@
 import axios from "axios";
 import { APIURL } from "@env";
+import { flashMessage } from "../flashMessage";
 import { IFeedBack } from "../../modules/FeedBackForm/types";
+import { MessagesTypes } from "../../constants/messagesTypes";
+import { FlashMessageBackgroundColors, FlashMessageColors } from "../../constants/themes";
 
 class FeedBackAPI {
     constructor(protected url: string) {}
@@ -9,8 +12,8 @@ class FeedBackAPI {
         try {
             const response = await axios.post(this.url, feedBack);
             return response.data;
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 }

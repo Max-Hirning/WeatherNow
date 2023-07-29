@@ -1,21 +1,25 @@
 import { data } from "../model/data";
 import { useDispatch } from "react-redux";
+import { ILocation } from "../../../redux/types";
 import { AppDispatch } from "../../../redux/store";
 import ArrowIcon from "../../../assets/icons/arrow";
 import SplashScreen from 'react-native-splash-screen';
 import { useNavigation } from "@react-navigation/core";
 import Geolocation from 'react-native-geolocation-service';
+import { ScreenNavigationProp } from "../../../types/Navigation";
 import React, { ReactElement, useEffect, useState } from 'react';
+import { MessagesTypes } from "../../../constants/messagesTypes";
+import { flashMessage } from "../../../controllers/flashMessage";
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import locations, { choseLocation, setLocationsAsync } from "../../../redux/reducers/locations";
 import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
-import { ILocation } from "../../../redux/types";
+import { choseLocation, setLocationsAsync } from "../../../redux/reducers/locations";
+import { FlashMessageBackgroundColors, FlashMessageColors } from "../../../constants/themes";
 
 export default function StartInfo(): ReactElement {
-    const navigation: any = useNavigation();
     const dispatch: AppDispatch = useDispatch();
+    const navigation = useNavigation<ScreenNavigationProp>();
     const [currentPage, setCurrentPage] = useState<number>(0);
 
     useEffect(() => {
@@ -46,8 +50,8 @@ export default function StartInfo(): ReactElement {
             setTimeout(() => {
                 SplashScreen.hide();
             }, 2000);
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 
@@ -60,16 +64,16 @@ export default function StartInfo(): ReactElement {
                     (position) => {
                         dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
                     },
-                    (error) => {
-                        console.error(error.code, error.message);
+                    () => {
+                        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
                     },
                     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                 )
             } else {
                 dispatch(setForecastWeatherAsync("Paris"));
             }
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 
@@ -77,8 +81,8 @@ export default function StartInfo(): ReactElement {
         try {
             navigation.navigate("App");
             AsyncStorage.setItem('tutorialFinished', JSON.stringify(true));
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 

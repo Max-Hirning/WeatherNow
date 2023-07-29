@@ -7,9 +7,13 @@ import MessageIcon from "../assets/icons/message";
 import { Text, View, Linking  } from "react-native";
 import SideBarMenuNavEl from '../UI/SideBarMenuNavEl';
 import { useNavigation } from '@react-navigation/native';
+import { ScreenNavigationProp } from '../types/Navigation';
+import { MessagesTypes } from '../constants/messagesTypes';
+import { flashMessage } from '../controllers/flashMessage';
+import { FlashMessageBackgroundColors, FlashMessageColors } from '../constants/themes';
 
 export default function SideBarMenuNavEls(): ReactElement {
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation<ScreenNavigationProp>();
 
     const moveToWeather = (): void => {
         navigation.navigate("Forecast");
@@ -26,8 +30,8 @@ export default function SideBarMenuNavEls(): ReactElement {
     const shareApp = async (): Promise<void> => {
         try {
             await Share.open({ url: "link" })
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 

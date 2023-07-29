@@ -1,8 +1,11 @@
 import { IForecast } from '../types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { ILocation, ICurrentWeather } from '../types';
+import { flashMessage } from '../../controllers/flashMessage';
+import { MessagesTypes } from '../../constants/messagesTypes';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { forecastWeatherAPI } from '../../controllers/api/forecastWeather';
+import { FlashMessageBackgroundColors, FlashMessageColors } from '../../constants/themes';
 
 interface IForecastWeatherData {
   location: ILocation;
@@ -3008,17 +3011,14 @@ export const forecastWeatherSlice = createSlice({
     builder.addCase(setForecastWeatherAsync.pending, (state: IForecastWeather): IForecastWeather => {
       state.loading = true;
       state.error = false;
-      console.log('loading')
       return state;
     });
     builder.addCase(setForecastWeatherAsync.rejected, (state: IForecastWeather): IForecastWeather => {
       state.loading = false;
       state.error = false;
-      console.log('error')
       return state;
     });
     builder.addCase(setForecastWeatherAsync.fulfilled, (_: IForecastWeather, { payload }: PayloadAction<IForecastWeatherData>): IForecastWeather => {
-      console.log('success')
       return {
         error: false,
         data: payload,
@@ -3033,6 +3033,7 @@ export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setFore
   if(response) {
     return response;
   } else {
+    flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
     throw "Error"
   }
 });

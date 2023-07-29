@@ -3,6 +3,8 @@ import { ILocation } from '../redux/types';
 import React, { ReactElement } from 'react';
 import { AppDispatch } from '../redux/store';
 import LocationIcon from "../assets/icons/location";
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNavigationProp } from '../types/Navigation';
 import { Text, TouchableOpacity, View } from "react-native";
 import { choseLocation } from '../redux/reducers/locations';
 import { setForecastWeatherAsync } from '../redux/reducers/forecastWeather';
@@ -14,10 +16,12 @@ interface IProps {
 
 export default function SideBarMenuLocationEl({ data, isActive }: IProps): ReactElement {
     const dispatch: AppDispatch = useDispatch();
+    const navigation = useNavigation<ScreenNavigationProp>()
 
     const selectLocation = (): void => {
         dispatch(choseLocation(data));
         dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
+        navigation.navigate("Forecast");
     }
 
     const getActiveLocationStyle = (): string => {

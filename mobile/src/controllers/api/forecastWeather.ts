@@ -1,5 +1,8 @@
 import axios from "axios";
 import { HOST, KEY, URL } from "@env";
+import { flashMessage } from "../flashMessage";
+import { MessagesTypes } from "../../constants/messagesTypes";
+import { FlashMessageBackgroundColors, FlashMessageColors } from "../../constants/themes";
 
 class ForecastWeatherAPI {
     constructor(protected url: string, private key: string, private host: string) {}
@@ -20,8 +23,8 @@ class ForecastWeatherAPI {
             };
             const response = await axios.request(options);
             return response.data;
-        } catch (error) {
-            console.error(error);
+        } catch {
+            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
         }
     }
 }

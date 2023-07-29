@@ -19,7 +19,6 @@ export default function FeedBackForm(): ReactElement {
 
     const sendFeedBack = async (): Promise<void> => {
         const response = await feedBackAPI.post(feedBack);
-        console.log(response);
         setFeedBack({
             theme: "",
             details: "",
