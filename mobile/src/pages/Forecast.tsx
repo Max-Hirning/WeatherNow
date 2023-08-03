@@ -31,7 +31,10 @@ export default function Forecast(): ReactElement {
 
     return (
         <ScrollView className="bg-slate-700 px-4 py-4" contentContainerStyle={{alignItems: 'center'}}>
-            <Loader>
+            <Loader
+                error={error}
+                loading={loading}
+            >
                 <>
                     <TodayForecast/>
                     <TodayForecastSlider/>

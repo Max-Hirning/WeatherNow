@@ -9,7 +9,7 @@ export default function TodayForecastDetails(): ReactElement {
     const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
-        <View className=" bg-gray-800 rounded-s-xl p-5 rounded-xl my-3">
+        <View className="bg-gray-800 rounded-s-xl p-5 rounded-xl my-3 max-w-sm">
             <Text className="font-bold text-white text-base text-xl">Details</Text>
             <View className="flex-row items-start justify-between">
                 <Image 

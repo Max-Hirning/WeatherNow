@@ -7,7 +7,7 @@ import AdditionalInfo from '../../../components/AdditionalInfo';
 
 export default function TodayForecast(): ReactElement {
     return (
-        <View className=" my-3">
+        <View className="max-w-md my-3">
             <DateLabel/>
             <Info/>
             <Divider/>

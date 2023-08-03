@@ -1,16 +1,13 @@
-import { useSelector } from 'react-redux';
 import { Image, Text } from 'react-native';
 import React, { ReactElement } from 'react';
-import { RootState } from '../../../redux/store';
-import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 interface IProps {
+    error: boolean;
+    loading: boolean;
     children: ReactElement;
 }
 
-export default function Loader({ children }: IProps): ReactElement {
-    const { loading, error }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
-
+export default function Loader({ error, loading, children }: IProps): ReactElement {
     if(loading) {
         return (
             <Image 

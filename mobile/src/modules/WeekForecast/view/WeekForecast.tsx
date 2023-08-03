@@ -12,7 +12,7 @@ export default function WeekForecast(): ReactElement {
     const { data }: IForecastWeather = useSelector((state: RootState) => state.forecastWeather);
 
     return (
-        <View className="my-3 bg-gray-800 px-5 pt-10 pb-5 rounded-xl">
+        <View className="my-3 max-w-xl bg-gray-800 px-5 pt-10 pb-5 rounded-xl">
             <ForecastTableHeader/>
             <View>
                 {
