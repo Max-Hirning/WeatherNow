@@ -13,6 +13,7 @@ import { flashMessage } from "../../../controllers/flashMessage";
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
 import { choseLocation, setLocationsAsync } from "../../../redux/reducers/locations";
 import { FlashMessageBackgroundColors, FlashMessageColors } from "../../../constants/themes";
@@ -115,16 +116,28 @@ export default function StartInfo(): ReactElement {
                 />
                 <Text className="w-64 text-center text-black text-3xl font-bold">{data[currentPage].title}</Text>
                 <Text className="w-64 pt-4 text-center text-gray-400 text-lg">{data[currentPage].text}</Text>
-                <TouchableOpacity 
-                    onPress={moveToNext}
-                    className='bg-slate-700 rounded-full p-2 mt-10'
-                >
-                    <ArrowIcon
-                        width={30}
-                        height={30}
-                        color="white"
-                    />
-                </TouchableOpacity>
+                <AnimatedCircularProgress
+                    size={75}
+                    width={5}
+                    tintColor="#DA42AE"
+                    style={{marginTop: 20}}
+                    backgroundColor="#BBC5D4"
+                    children={(): ReactElement => {
+                        return (
+                            <TouchableOpacity 
+                                onPress={moveToNext}
+                                className='bg-slate-700 rounded-full p-2'
+                            >
+                                <ArrowIcon
+                                    width={30}
+                                    height={30}
+                                    color="white"
+                                />
+                            </TouchableOpacity>
+                        )
+                    }}
+                    fill={((currentPage)/data.length)*100}
+                />
             </View>
         </View>
     );

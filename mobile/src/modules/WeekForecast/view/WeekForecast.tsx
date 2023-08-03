@@ -1,10 +1,11 @@
 import { View } from 'react-native';
 import { useSelector } from 'react-redux';
-import React, { ReactElement } from 'react';
 import ForecastTableEl from './ForecastTableEl';
 import { RootState } from '../../../redux/store';
-import ForecastTableHeader from './ForecastTableHeader';
 import { IForecastDay } from '../../../redux/types';
+import React, { Fragment, ReactElement } from 'react';
+import ForecastTableHeader from './ForecastTableHeader';
+import { checkDateWithToday } from '../controller/date';
 import { IForecastWeather } from '../../../redux/reducers/forecastWeather';
 
 export default function WeekForecast(): ReactElement {
@@ -16,16 +17,20 @@ export default function WeekForecast(): ReactElement {
             <View>
                 {
                     (data.forecast.forecastday).map((day: IForecastDay, index: number): ReactElement => {
-                        return (
-                            <ForecastTableEl 
-                                index={index}
-                                date={day.date}
-                                key={index.toString()}
-                                min={day.day.mintemp_c}
-                                max={day.day.maxtemp_c}
-                                weatherIcon={day.day.condition.icon}
-                            />
-                        );
+                        if(!checkDateWithToday(day.date)) {
+                            return (
+                                <ForecastTableEl 
+                                    index={index}
+                                    date={day.date}
+                                    key={index.toString()}
+                                    min={day.day.mintemp_c}
+                                    max={day.day.maxtemp_c}
+                                    weatherIcon={day.day.condition.icon}
+                                />
+                            );
+                        } else {
+                            return <Fragment key={index}></Fragment>;
+                        }
                     })
                 }
             </View>
