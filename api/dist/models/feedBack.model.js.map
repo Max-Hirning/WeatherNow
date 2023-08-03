@@ -1,1 +1,0 @@
-{"version":3,"file":"feedBack.model.js","sourceRoot":"","sources":["../../src/models/feedBack.model.ts"],"names":[],"mappings":";;;AAAA,uCAAyC;AAGzC,MAAM,QAAQ,GAAG,IAAI,iBAAM,CAAC;IAC3B,KAAK,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,IAAI,EAAE;IACvC,OAAO,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,IAAI,EAAE;CACzC,CAAC,CAAC;AAEU,QAAA,aAAa,GAAG,IAAA,gBAAK,EAAY,WAAW,EAAE,QAAQ,CAAC,CAAC"}
