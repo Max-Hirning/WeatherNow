@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "add-build": "git add dist",
+    "dev": "nodemon src/index.ts",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "pre-commit": "npm run ts.check && npm run build && npm run add-build"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +28,8 @@
     "@types/node": "^20.4.4",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
-    "eslint": "^8.45.0"
+    "eslint": "^8.45.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^5.0.1"
   }
 }
