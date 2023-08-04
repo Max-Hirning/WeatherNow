@@ -9,6 +9,10 @@ export const store = configureStore({
         locations: locationsReducer,
         forecastWeather: forecastWeatherReducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+    })
 })
 
 export type AppDispatch = typeof store.dispatch
