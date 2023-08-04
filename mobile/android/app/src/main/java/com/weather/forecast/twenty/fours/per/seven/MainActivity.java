@@ -1,4 +1,4 @@
-package com.weathernow;
+package com.weather.forecast.twenty.fours.per.seven;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

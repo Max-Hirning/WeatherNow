@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.weathernow"
+    namespace "com.weather.forecast.twenty.fours.per.seven"
     defaultConfig {
-        applicationId "com.weathernow"
+        applicationId "com.weather.forecast.twenty.fours.per.seven"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
