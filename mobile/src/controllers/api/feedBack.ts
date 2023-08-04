@@ -13,7 +13,7 @@ class FeedBackAPI {
             const response = await axios.post(this.url, feedBack);
             return response.data;
         } catch {
-            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+            flashMessage("Smth went wrong", "Pls contact us: feedback post error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 }

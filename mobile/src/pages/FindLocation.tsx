@@ -62,7 +62,7 @@ export default function FindLocation(): ReactElement {
                         dispatch(setForecastWeatherAsync(`${lat},${lng}`));
                         navigation.navigate("Forecast");
                     } else {
-                        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+                        flashMessage("Smth went wrong", "Pls contact us: search locations error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
                     }
                 }}
             />

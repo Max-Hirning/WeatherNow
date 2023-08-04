@@ -22,7 +22,7 @@ const initialState: IFeedBackStore = {
         details: "",
     },
     error: false,
-    loading: true,
+    loading: false,
 }
 
 export const feedBackSlice = createSlice({
@@ -60,11 +60,10 @@ export const feedBackSlice = createSlice({
 });
 
 export const setFeedBackAsync = createAsyncThunk("feedBack/setFeddBack", async (payload: IFeedBack): Promise<IFeedBack> => {
-	const response = await feedBackAPI.post(payload);
-    // if(response) {
-    //     flashMessage("Success", response, MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
-    // }
-    console.log(response)
+    const response = await feedBackAPI.post(payload);
+    if(response) {
+        flashMessage("Success", response, MessagesTypes.SUCCESS, FlashMessageBackgroundColors.SUCCESS, FlashMessageColors.SUCCESS);
+    }
     return initialState.data;
 });
 

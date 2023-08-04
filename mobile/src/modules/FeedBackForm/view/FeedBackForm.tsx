@@ -1,5 +1,4 @@
 import { themes } from '../models';
-import { IFeedBack } from '../types';
 import FormEl from '../../../components/FormEl';
 import { useDispatch, useSelector } from 'react-redux';
 import SelectDropdown from 'react-native-select-dropdown';

@@ -13,7 +13,7 @@ export const permissionAction = async (): Promise<boolean> => {
         }
         return permission;
     } catch (error) {
-        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+        flashMessage("Smth went wrong", "Pls contact us: permission error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
     }
     return false
 }

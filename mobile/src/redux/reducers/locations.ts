@@ -57,7 +57,7 @@ export const setLocationsAsync = createAsyncThunk("locations/setLocations", asyn
             return JSON.parse(result);
         }
     } catch {
-        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
+        flashMessage("Smth went wrong", "Pls contact us: saved locations error", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
     }
     return initialState;
 });

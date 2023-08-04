@@ -24,14 +24,14 @@ export default function SideBarMenuNavEls(): ReactElement {
     }
 
     const openAppInGooglePlay = (): void => {
-        Linking.openURL("market://details?id=com.finance.tracker");
+        Linking.openURL("https://reactnative.dev/");
     }
 
     const shareApp = async (): Promise<void> => {
         try {
-            await Share.open({ url: "link" })
+            await Share.open({ url: "https://reactnative.dev/" })
         } catch {
-            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+            flashMessage("Smth went wrong", "Pls contact us: share error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 

@@ -52,7 +52,7 @@ export default function StartInfo(): ReactElement {
                 SplashScreen.hide();
             }, 2000);
         } catch {
-            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+            flashMessage("Smth went wrong", "Pls contact us: location error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 
@@ -66,7 +66,7 @@ export default function StartInfo(): ReactElement {
                         dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
                     },
                     () => {
-                        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+                        flashMessage("Smth went wrong", "Pls contact us: location error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
                     },
                     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                 )

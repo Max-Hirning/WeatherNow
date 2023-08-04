@@ -24,7 +24,7 @@ class ForecastWeatherAPI {
             const response = await axios.request(options);
             return response.data;
         } catch {
-            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
+            flashMessage("Smth went wrong", "Pls contact us: get weather api error", MessagesTypes.ERROR, FlashMessageBackgroundColors.ERROR, FlashMessageColors.ERROR);
         }
     }
 }

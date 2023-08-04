@@ -7,6 +7,6 @@ export const saveInAsyncStorage = async (key: string, value: string): Promise<vo
     try {
         await AsyncStorage.setItem(key, value);
     } catch (error) {
-        flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
+        flashMessage("Smth went wrong", "Pls contact us: storage error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
     }
 }
