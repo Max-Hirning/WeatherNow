@@ -1,4 +1,4 @@
-import { APPURL } from "@env";
+import { APP_URL } from "@env";
 import Share from 'react-native-share';
 import React, { ReactElement } from 'react';
 import StarIcon from "../assets/icons/star";
@@ -25,12 +25,12 @@ export default function SideBarMenuNavEls(): ReactElement {
     }
 
     const openAppInGooglePlay = (): void => {
-        Linking.openURL(APPURL);
+        Linking.openURL(APP_URL);
     }
 
     const shareApp = async (): Promise<void> => {
         try {
-            await Share.open({ url: APPURL })
+            await Share.open({ url: APP_URL })
         } catch {
             flashMessage("Smth went wrong", "Pls contact us: share error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
