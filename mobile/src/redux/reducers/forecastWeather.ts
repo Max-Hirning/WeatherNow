@@ -78,7 +78,6 @@ export const forecastWeatherSlice = createSlice({
       return state;
     },
     setWhenLoading: (state: IForecastWeather): IForecastWeather => {
-      console.log('set, loading')
       state.loading = true;
       state.error = false;
       return state;
@@ -106,7 +105,6 @@ export const forecastWeatherSlice = createSlice({
 });
 
 export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setForecastWeather", async (payload: string): Promise<IForecastWeatherData> => {
-	console.log(payload);
   const response = await forecastWeatherAPI.get(payload);
   if(response) {
     return response;

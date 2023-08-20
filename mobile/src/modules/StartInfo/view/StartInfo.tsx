@@ -50,7 +50,7 @@ export default function StartInfo(): ReactElement {
             }
             setTimeout(() => {
                 SplashScreen.hide();
-            }, 2000);
+            }, 1000);
         } catch {
             flashMessage("Smth went wrong", "Pls contact us: location error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }

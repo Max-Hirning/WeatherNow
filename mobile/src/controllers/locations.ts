@@ -13,7 +13,6 @@ export function useGetCurrentLocation() {
 	const getLocationAndForecast = async (): Promise<void> => {
 		try {
 				const permission = await permissionAction();
-				console.log(permission);
 				if(permission) {
 						Geolocation.getCurrentPosition(
 								(position) => {
