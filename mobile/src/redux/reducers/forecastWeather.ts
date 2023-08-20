@@ -71,7 +71,19 @@ const initialState: IForecastWeather = {
 export const forecastWeatherSlice = createSlice({
   name: 'forecastWeatherSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    setWhenError: (state: IForecastWeather): IForecastWeather => {
+      state.loading = false;
+      state.error = true;
+      return state;
+    },
+    setWhenLoading: (state: IForecastWeather): IForecastWeather => {
+      console.log('set, loading')
+      state.loading = true;
+      state.error = false;
+      return state;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(setForecastWeatherAsync.pending, (state: IForecastWeather): IForecastWeather => {
       state.loading = true;
@@ -94,7 +106,8 @@ export const forecastWeatherSlice = createSlice({
 });
 
 export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setForecastWeather", async (payload: string): Promise<IForecastWeatherData> => {
-	const response = await forecastWeatherAPI.get(payload);
+	console.log(payload);
+  const response = await forecastWeatherAPI.get(payload);
   if(response) {
     return response;
   } else {
@@ -103,4 +116,5 @@ export const setForecastWeatherAsync = createAsyncThunk("forecastWeather/setFore
   }
 });
 
+export const { setWhenError, setWhenLoading } = forecastWeatherSlice.actions
 export default forecastWeatherSlice.reducer;

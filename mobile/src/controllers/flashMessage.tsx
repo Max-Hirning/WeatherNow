@@ -24,7 +24,7 @@ export const flashMessage = (message: string, description: string, type: Message
             marginLeft: 10,
             alignItems: 'center',
         },
-        duration: 3000,
+        duration: 3500,
         animated: true,
         hideOnPress: true,
         animationDuration: 500,

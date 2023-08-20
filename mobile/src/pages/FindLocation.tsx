@@ -1,5 +1,4 @@
-import { APIMAPKEY } from "@env";
-import { View } from "react-native";
+import { PLACE_API_KEY } from "@env";
 import { useDispatch } from "react-redux";
 import React, { ReactElement } from 'react';
 import { AppDispatch } from "../redux/store";
@@ -7,16 +6,31 @@ import { useNavigation } from "@react-navigation/core";
 import { ScreenNavigationProp } from "../types/Navigation";
 import { MessagesTypes } from "../constants/messagesTypes";
 import { flashMessage } from "../controllers/flashMessage";
-import { setForecastWeatherAsync } from "../redux/reducers/forecastWeather";
+import { View, TouchableOpacity, Text } from "react-native";
+import { useGetCurrentLocation } from "../controllers/locations";
+import { setForecastWeatherAsync, setWhenLoading } from "../redux/reducers/forecastWeather";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { FlashMessageBackgroundColors, FlashMessageColors } from "../constants/themes";
 
 export default function FindLocation(): ReactElement {
     const dispatch: AppDispatch = useDispatch();
+    const getLocationAndForecast = useGetCurrentLocation();
     const navigation = useNavigation<ScreenNavigationProp>();
+
+    const getMyLocation = () => {
+        dispatch(setWhenLoading())
+        getLocationAndForecast();
+        navigation.navigate("Forecast");
+    }
 
     return (
         <View className="bg-slate-700 px-4 py-4 flex-1">
+            <TouchableOpacity 
+                onPress={getMyLocation}
+                className="mt-2 mb-6 w-60 p-2 m-auto flex-row items-center justify-center bg-gray-800 rounded-full"
+            >
+                <Text className="text-gray-400 text-lg text-center">My current location</Text>
+            </TouchableOpacity>
             <GooglePlacesAutocomplete
                 styles={{
                     row: {
@@ -37,6 +51,9 @@ export default function FindLocation(): ReactElement {
                         backgroundColor: 'transparent',
                         borderColor: 'rgb(156 163 175)',
                     },
+                    container: {
+                        marginTop: 20
+                    },
                     description: {
                         fontSize: 16,
                         lineHeight: 24,
@@ -47,8 +64,8 @@ export default function FindLocation(): ReactElement {
                     },
                 }}
                 query={{
-                    key: APIMAPKEY,
                     language: 'en',
+                    key: PLACE_API_KEY,
                 }}
                 textInputProps={{
                     returnKeyType: "search",

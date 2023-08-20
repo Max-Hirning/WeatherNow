@@ -5,14 +5,13 @@ import { AppDispatch } from "../../../redux/store";
 import ArrowIcon from "../../../assets/icons/arrow";
 import SplashScreen from 'react-native-splash-screen';
 import { useNavigation } from "@react-navigation/core";
-import Geolocation from 'react-native-geolocation-service';
 import { ScreenNavigationProp } from "../../../types/Navigation";
 import React, { ReactElement, useEffect, useState } from 'react';
 import { MessagesTypes } from "../../../constants/messagesTypes";
 import { flashMessage } from "../../../controllers/flashMessage";
 import { View, TouchableOpacity, Text, Image } from 'react-native';
-import { permissionAction } from "../../../controllers/permissions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGetCurrentLocation } from "../../../controllers/locations";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { setForecastWeatherAsync } from "../../../redux/reducers/forecastWeather";
 import { choseLocation, setLocationsAsync } from "../../../redux/reducers/locations";
@@ -20,6 +19,7 @@ import { FlashMessageBackgroundColors, FlashMessageColors } from "../../../const
 
 export default function StartInfo(): ReactElement {
     const dispatch: AppDispatch = useDispatch();
+    const getLocationAndForecast = useGetCurrentLocation();
     const navigation = useNavigation<ScreenNavigationProp>();
     const [currentPage, setCurrentPage] = useState<number>(0);
 
@@ -53,28 +53,6 @@ export default function StartInfo(): ReactElement {
             }, 2000);
         } catch {
             flashMessage("Smth went wrong", "Pls contact us: location error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
-        }
-    }
-
-    const getLocationAndForecast = async (): Promise<void> => {
-        try {
-            const permission = await permissionAction();
-
-            if(permission) {
-                Geolocation.getCurrentPosition(
-                    (position) => {
-                        dispatch(setForecastWeatherAsync(`${position.coords.latitude},${position.coords.longitude}`));
-                    },
-                    () => {
-                        flashMessage("Smth went wrong", "Pls contact us: location error", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
-                    },
-                    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-                )
-            } else {
-                dispatch(setForecastWeatherAsync("Paris"));
-            }
-        } catch {
-            flashMessage("Smth went wrong", "Pls contact us", MessagesTypes.WARNING, FlashMessageBackgroundColors.WARNING, FlashMessageColors.WARNING);
         }
     }
 

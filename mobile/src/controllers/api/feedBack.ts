@@ -1,5 +1,5 @@
 import axios from "axios";
-import { APIURL } from "@env";
+import { FEEDBACK_API_URL } from "@env";
 import { flashMessage } from "../flashMessage";
 import { IFeedBack } from "../../modules/FeedBackForm/types";
 import { MessagesTypes } from "../../constants/messagesTypes";
@@ -18,4 +18,4 @@ class FeedBackAPI {
     }
 }
 
-export const feedBackAPI = new FeedBackAPI(`${APIURL}/api/feedBack`);
+export const feedBackAPI = new FeedBackAPI(`${FEEDBACK_API_URL}/api/feedBack`);

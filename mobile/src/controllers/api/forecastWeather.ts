@@ -1,7 +1,7 @@
 import axios from "axios";
-import { HOST, KEY, URL } from "@env";
 import { flashMessage } from "../flashMessage";
 import { MessagesTypes } from "../../constants/messagesTypes";
+import { WEATHER_API_HOST, WEATHER_API_KEY, WEATHER_API_URL } from "@env";
 import { FlashMessageBackgroundColors, FlashMessageColors } from "../../constants/themes";
 
 class ForecastWeatherAPI {
@@ -29,4 +29,4 @@ class ForecastWeatherAPI {
     }
 }
 
-export const forecastWeatherAPI = new ForecastWeatherAPI(URL, KEY, HOST);
+export const forecastWeatherAPI = new ForecastWeatherAPI(WEATHER_API_URL, WEATHER_API_KEY, WEATHER_API_HOST);
