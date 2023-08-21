@@ -1,5 +1,6 @@
 import { data } from "../model/data";
 import { useDispatch } from "react-redux";
+import LottieView from 'lottie-react-native';
 import { ILocation } from "../../../redux/types";
 import { AppDispatch } from "../../../redux/store";
 import ArrowIcon from "../../../assets/icons/arrow";
@@ -82,9 +83,15 @@ export default function StartInfo(): ReactElement {
                 <Text className="text-white text-base">Skip</Text>
             </TouchableOpacity>
             <View>
-            <Image 
+            <LottieView 
+                loop
+                autoPlay 
+                style={{
+                    width: 250, 
+                    height: 250, 
+                    marginTop: 100,
+                }} 
                 source={data[currentPage].image} 
-                style={{ width: 250, height: 250, marginTop: 60 }} 
             />
             </View>
             <View className='h-96 items-center pt-20'>

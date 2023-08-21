@@ -4,21 +4,21 @@ export const data: IInfoPage[] = [
     {
         title: "Detailed Hourly Forecast",
         text: "Get in - depth weather information.",
-        image: require('../../../assets/images/moon-cloudy.gif'),
+        image: require('../../../assets/animations/moon-cloudy.json'),
     },
     {
         title: "Real-Time Weather Map",
-        image: require('../../../assets/images/sunny.gif'),
+        image: require('../../../assets/animations/sunny.json'),
         text: "Watch the progress of the precipitation to stay informed."
     },
     {
         title: "Weather Around the World",
-        image: require('../../../assets/images/storm.gif'),
+        image: require('../../../assets/animations/storm.json'),
         text: "Add any location you wnat and swipe easily to change."
     },
     {
         title: "Detailed Hourly Forecast",
         text: "Get in - depth weather information.",
-        image: require('../../../assets/images/sunny-cloudy.gif'),
+        image: require('../../../assets/animations/moon-cloudy.json'),
     }
 ]

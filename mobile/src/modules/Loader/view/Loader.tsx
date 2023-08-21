@@ -1,5 +1,6 @@
-import { Image, Text } from 'react-native';
+import { Text } from 'react-native';
 import React, { ReactElement } from 'react';
+import LottieView from 'lottie-react-native';
 
 interface IProps {
     error: boolean;
@@ -10,9 +11,15 @@ interface IProps {
 export default function Loader({ error, loading, children }: IProps): ReactElement {
     if(loading) {
         return (
-            <Image 
-                style={{ width: 250, height: 250, marginTop: 60 }} 
-                source={require("../../../assets/images/loader.gif")} 
+            <LottieView 
+                loop
+                autoPlay 
+                style={{
+                    width: 250, 
+                    height: 250, 
+                    marginTop: 60,
+                }} 
+                source={require("../../../assets/animations/loader.json")} 
             />
         );
     }
@@ -20,9 +27,15 @@ export default function Loader({ error, loading, children }: IProps): ReactEleme
     if(error) {
         return (
             <>
-                <Image 
-                    source={require("../../../assets/images/404.gif")} 
-                    style={{ width: 250, height: 250, marginTop: 60 }} 
+                <LottieView 
+                    loop
+                    autoPlay 
+                    style={{
+                        width: 250, 
+                        height: 250, 
+                        marginTop: 60,
+                    }} 
+                    source={require("../../../assets/animations/404.json")} 
                 />
                 <Text className="text-center text-gray-400 text-3xl font-bold">Contact with our tech support</Text>
             </>
