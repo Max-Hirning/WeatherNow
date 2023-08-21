@@ -28,7 +28,6 @@ function App(): ReactElement {
                 swipeEnabled: false,
                 headerTintColor: 'white',
             }}
-            drawerLockMode="locked-closed" // Set the drawerLockMode here
             initialRouteName="Forecast"
             drawerContent={(props: DrawerContentComponentProps): ReactElement => SideBarMenu(props)}
         >

@@ -47,6 +47,13 @@ export default function SideBarMenuLocationEl({ data, isActive }: IProps): React
         }
     }
 
+    const shortenString = (str: string): string => {
+        if (str.length > 13) {
+            return (str.substring(0, 13)).trim() + "...";
+        }
+        return str;
+    }
+
     const selectLocation = async (): Promise<void> => {
         navigation.navigate("Forecast");
         const res = await dispatch(setForecastWeatherAsync(`${data.lat},${data.lon}`));
@@ -66,7 +73,7 @@ export default function SideBarMenuLocationEl({ data, isActive }: IProps): React
                     color="white"
                 />
                 <View>
-                    <Text className="text-white text-base ml-3">{data.name}</Text>
+                    <Text className="text-white text-base ml-3">{shortenString(data.name)}</Text>
                     <Text className="text-white text-base ml-3">{formatCountryName()}</Text>
                 </View>
             </TouchableOpacity>
