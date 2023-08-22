@@ -43,8 +43,6 @@ You will also see any lint errors in the console.
 ### `yarn run pre-commit`
 Builds the api for production to the `build`. Run this command right before `git add .` and then push commit
 
-`For correct working you have to create .env file in api folder with these datas: PORT(Port for api), STARTMESSAGE(Start message, so you could now that server starts working), DB(MongoDB url for connecting, you can find it in cluster connection)`
-
 ### For correct working you have to create .env file in api folder with these datails: 
 * `PORT` (Port for api)
 * `DB` (MongoDB url for connecting, you can find it in cluster connection)
